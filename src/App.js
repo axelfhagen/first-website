@@ -31,7 +31,7 @@ function App() {
         <div className="nav-links">
           <a href="#intro" className="nav-link">Home</a>
           <a href="#projects" className="nav-link">Projects</a>
-          <a href="#photography" className="nav-link">Photography</a>
+          <a href="#photography" className="nav-link">"Plog"</a>
           <a href="#contact" className="nav-link">Contact</a>
         </div>
         <button className="dark-mode-toggle" onClick={toggleDarkMode} aria-label="Toggle dark mode">
@@ -42,11 +42,10 @@ function App() {
       <main className="main-content">
         {/* Intro Section */}
         <section id="intro" className="section intro-section">
-          <h1 className="name-title">Axel Hagen</h1>
+          <h1 className="name-title">Axel Friberg Hagen</h1>
           <p className="intro-text">
-            Applied physics & mathematics student with a passion for AI and deep learning. 
-            I love diving into natural language processing and building things that blend 
-            mathematical elegance with real-world impact.
+            Hey, I'm Axel!👋 Physics and math student from Norway who's into AI and Statistics.
+            I also love to travel ✈️- check out some of my photos below📸
           </p>
           <div className="status-indicator">
             <span className="status-dot"></span>
@@ -71,38 +70,38 @@ function App() {
           <h2 className="section-title">Featured Projects</h2>
           <div className="projects-grid">
             <div className="project-card">
-              <h3 className="project-title">🚀 Portfolio Website</h3>
+              <h3 className="project-title">🚀 Personal Website</h3>
               <p className="project-description">
-                This very website! Built with React and smooth macOS-like animations.
+                This very website! Built with React.
               </p>
               <div className="project-tech">React • CSS3 • Glassmorphism</div>
-              <a href="https://github.com/axelfhagen/first-webiste" className="project-link">View on GitHub →</a>
+              <a href="https://github.com/axelfhagen/first-website" className="project-link">View on GitHub →</a>
             </div>
             
             <div className="project-card">
-              <h3 className="project-title">📱 Mobile App</h3>
+              <h3 className="project-title">🌱Plant Classifier</h3>
               <p className="project-description">
-                Classifying healthy unhealthy plants with computer vision🌱🍂
+                Classifying healthy / unhealthy plants with computer vision.
               </p>
-              <div className="project-tech">React Native • TypeScript</div>
+              <div className="project-tech">Python • TensorFlow • Kaggle</div>
               <a href="https://github.com/axelfhagen/CNN-plant-health-classifier" className="project-link">View on GitHub →</a>
             </div>
 
             <div className="project-card">
-              <h3 className="project-title">📱 Mobile App</h3>
+              <h3 className="project-title">⛴️ AIS forecaster</h3>
               <p className="project-description">
-                Classifying healthy unhealthy plants with computer vision🌱🍂
+                Predicting position of cargo ships using AIS data.
               </p>
-              <div className="project-tech">React Native • TypeScript</div>
-              <a href="https://github.com/axelfhagen/CNN-plant-health-classifier" className="project-link">View on GitHub →</a>
+              <div className="project-tech">Python • sklearn • pandas</div>
+              <a href="https://github.com/axelfhagen/AIS-Forcaster" className="project-link">View on GitHub →</a>
             </div>
 
             <div className="project-card">
-              <h3 className="project-title">🤖 AI Tool</h3>
+              <h3 className="project-title">📈 LSTM Timeseries Forecasting</h3>
               <p className="project-description">
-                Predicting future values with Deep Learning📈
+                Predicting future values with Deep Learning.
               </p>
-              <div className="project-tech">Python • OpenAI • FastAPI</div>
+              <div className="project-tech">Python • TensorFlow • numpy</div>
               <a href="https://github.com/axelfhagen/LSTM-timeseries-forecasting" className="project-link">View on GitHub →</a>
             </div>
           </div>
