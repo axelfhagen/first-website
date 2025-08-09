@@ -3,6 +3,13 @@ import './App.css';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+
+  // Sample photos - you can add more by adding JPG files to public/images/
+  const photos = [
+    { src: '/images/IMG_6959.jpg', alt: 'Travel Photo 1' },
+    // Add more photos here as you add them to the images folder
+  ];
 
   useEffect(() => {
     const savedMode = localStorage.getItem('darkMode');
@@ -22,6 +29,14 @@ function App() {
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
+  };
+
+  const openLightbox = (photo) => {
+    setSelectedPhoto(photo);
+  };
+
+  const closeLightbox = () => {
+    setSelectedPhoto(null);
   };
 
   return (
@@ -97,7 +112,7 @@ function App() {
             </div>
 
             <div className="project-card">
-              <h3 className="project-title">📈 LSTM Timeseries Forecasting</h3>
+              <h3 className="project-title">📈 LSTM Timeseries</h3>
               <p className="project-description">
                 Predicting future values with Deep Learning.
               </p>
@@ -109,13 +124,32 @@ function App() {
 
         {/* Photography Section */}
         <section id="photography" className="section">
-          <h2 className="section-title">Photography</h2>
-          <p className="section-subtitle">Capturing moments and perspectives</p>
+          <h2 className="section-title">"Plog"</h2>
+          <p className="section-subtitle">Capturing moments through Photos</p>
           <div className="photo-grid">
-            <div className="photo-placeholder">🌅 Sunrise in the Mountains</div>
-            <div className="photo-placeholder">🏙️ City Architecture</div>
-            <div className="photo-placeholder">🌊 Ocean Waves</div>
-            <div className="photo-placeholder">🍂 Autumn Colors</div>
+            {photos.map((photo, index) => (
+              <div 
+                key={index} 
+                className="photo-item" 
+                onClick={() => openLightbox(photo)}
+              >
+                <img 
+                  src={photo.src} 
+                  alt={photo.alt} 
+                  className="photo-thumbnail"
+                />
+              </div>
+            ))}
+            {/* Placeholder items to show grid layout */}
+            {photos.length < 6 && (
+              <>
+                <div className="photo-placeholder">📸 Add more photos</div>
+                <div className="photo-placeholder">📸 Add more photos</div>
+                <div className="photo-placeholder">📸 Add more photos</div>
+                <div className="photo-placeholder">📸 Add more photos</div>
+                <div className="photo-placeholder">📸 Add more photos</div>
+              </>
+            )}
           </div>
         </section>
 
@@ -129,7 +163,7 @@ function App() {
             <a href="mailto:axel.hagen@hotmail.com" className="contact-button">
               Send me an email
             </a>
-            <a href="/resume.pdf" className="contact-button secondary" target="_blank">
+            <a href="/Axel_Hagen_CV_English.pdf" className="contact-button secondary" target="_blank" rel="noopener noreferrer">
               Download Resume
             </a>
           </div>
@@ -157,6 +191,20 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Lightbox Modal */}
+      {selectedPhoto && (
+        <div className="lightbox-overlay" onClick={closeLightbox}>
+          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <button className="lightbox-close" onClick={closeLightbox}>×</button>
+            <img 
+              src={selectedPhoto.src} 
+              alt={selectedPhoto.alt} 
+              className="lightbox-image"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
