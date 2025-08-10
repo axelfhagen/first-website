@@ -104,12 +104,15 @@ function App() {
           
           <div className="social-links">
             <a href="https://github.com/axelfhagen" className="social-link" target="_blank" rel="noopener noreferrer">
+              <img src="/icons/github-logo.svg" alt="" className="social-icon" />
               GitHub
             </a>
             <a href="https://www.linkedin.com/in/axelhagen/" className="social-link" target="_blank" rel="noopener noreferrer">
+              <img src="/icons/linkedin-logo.svg" alt="" className="social-icon" />
               LinkedIn
             </a>
             <a href="mailto:axel.hagen@hotmail.com" className="social-link">
+              <img src="/icons/email-logo.svg" alt="" className="social-icon" />
               Email
             </a>
           </div>
@@ -161,8 +164,31 @@ function App() {
         <section id="photography" className="section">
           <h2 className="section-title">"Plog"</h2>
           <p className="section-subtitle">Capturing moments through Photos</p>
+          
+          {/* Section Navigation */}
+          <div className="photo-nav">
+            <button 
+              className={`photo-nav-btn ${selectedSection === 'highlights' ? 'active' : ''}`}
+              onClick={() => setSelectedSection('highlights')}
+            >
+              ✨ Highlights
+            </button>
+            {Object.keys(sections).map(section => (
+              <button 
+                key={section}
+                className={`photo-nav-btn ${selectedSection === section ? 'active' : ''}`}
+                onClick={() => setSelectedSection(section)}
+              >
+                {section === 'travel' && '✈️ Travel'}
+                {section === 'nature' && '🌿 Nature'}
+                {section === 'city' && '🏙️ City'}
+              </button>
+            ))}
+          </div>
+
+          {/* Photo Grid */}
           <div className="photo-grid">
-            {photos.map((photo, index) => (
+            {selectedSection === 'highlights' && highlights.map((photo, index) => (
               <div 
                 key={index} 
                 className="photo-item" 
@@ -175,16 +201,19 @@ function App() {
                 />
               </div>
             ))}
-            {/* Placeholder items to show grid layout */}
-            {photos.length < 6 && (
-              <>
-                <div className="photo-placeholder">📸 Add more photos</div>
-                <div className="photo-placeholder">📸 Add more photos</div>
-                <div className="photo-placeholder">📸 Add more photos</div>
-                <div className="photo-placeholder">📸 Add more photos</div>
-                <div className="photo-placeholder">📸 Add more photos</div>
-              </>
-            )}
+            {selectedSection !== 'highlights' && sections[selectedSection] && sections[selectedSection].map((photo, index) => (
+              <div 
+                key={index} 
+                className="photo-item" 
+                onClick={() => openLightbox(photo)}
+              >
+                <img 
+                  src={photo.src} 
+                  alt={photo.alt} 
+                  className="photo-thumbnail"
+                />
+              </div>
+            ))}
           </div>
         </section>
 
@@ -218,9 +247,11 @@ function App() {
           </div>
           <div className="footer-social">
             <a href="https://github.com/axelfhagen" className="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <img src="/icons/github-logo.svg" alt="" className="footer-social-icon" />
               <span>GitHub</span>
             </a>
             <a href="https://www.linkedin.com/in/axelhagen/" className="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <img src="/icons/linkedin-logo.svg" alt="" className="footer-social-icon" />
               <span>LinkedIn</span>
             </a>
           </div>

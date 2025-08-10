@@ -246,11 +246,25 @@ html {
   font-weight: 500;
   font-size: 0.875rem;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
 }
 
 .social-link:hover {
   background: rgba(0, 122, 255, 0.2);
   transform: translateY(-2px);
+}
+
+.social-link:hover .social-icon {
+  opacity: 1;
 }
 
 /* Projects Section */
@@ -310,11 +324,44 @@ html {
 }
 
 /* Photography Section */
+.photo-nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.photo-nav-btn {
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px var(--shadow-light);
+}
+
+.photo-nav-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--shadow-heavy);
+}
+
+.photo-nav-btn.active {
+  background: var(--text-accent);
+  color: white;
+  border-color: var(--text-accent);
+}
+
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
@@ -556,11 +603,25 @@ html {
   padding: 0.5rem;
   border-radius: 8px;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-social-icon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
 }
 
 .footer-social-link:hover {
   color: var(--text-accent);
   background: rgba(0, 122, 255, 0.1);
+}
+
+.footer-social-link:hover .footer-social-icon {
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
@@ -619,5 +680,19 @@ html {
   
   .footer-info {
     align-items: center;
+  }
+}
+
+/* Mobile responsiveness for photo grid */
+@media (max-width: 480px) {
+  .photo-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 400px;
+  }
+  
+  .photo-nav-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
   }
 }
