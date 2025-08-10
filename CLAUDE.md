@@ -4,20 +4,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is Axel Hagen's personal portfolio website - a modern, minimalistic site with smooth macOS-like design elements. Built with React 19.1.0 and Create React App, featuring glassmorphism UI, dark mode support, and polished animations.
+This is Axel Hagen's personal portfolio website - a modern, minimalistic site with smooth macOS-like design elements. Built with React 19.1.0 and Vite 7.1.1, featuring glassmorphism UI, dark mode support, and polished animations.
 
 **Project Goal**: Create a professional yet personal showcase featuring projects, photography, and contact information with an emphasis on smooth UX and macOS-inspired aesthetics.
 
 ## Development Commands
 
-- **Start development server**: `npm start` - Runs on http://localhost:3000 with hot reload
-- **Run tests**: `npm test` - Launches Jest test runner in watch mode  
-- **Build for production**: `npm run build` - Creates optimized production build in `build/` folder
-- **Eject (irreversible)**: `npm run eject` - Exposes all configuration files
+- **Start development server**: `npm run dev` or `npm start` - Runs on http://localhost:3000 with instant hot reload
+- **Run tests**: `npm test` - Launches Vitest test runner in watch mode  
+- **Build for production**: `npm run build` - Creates optimized production build in `build/` folder using Rollup
+- **Preview build**: `npm run preview` - Preview production build locally
 
 ## Architecture & Features
 
 - **Frontend Framework**: React 19.1.0 with functional components and hooks
+- **Build Tool**: Vite 7.1.1 with lightning-fast hot module replacement and optimized builds
 - **Styling**: CSS3 with custom properties (CSS variables) for theming
 - **Dark Mode**: Toggle with system preference detection and localStorage persistence
 - **Animations**: CSS keyframes with staggered entrance effects and smooth transitions
@@ -51,6 +52,24 @@ This is Axel Hagen's personal portfolio website - a modern, minimalistic site wi
 - Social links use placeholder URLs (GitHub, LinkedIn, Email)
 - Photography section has emoji placeholders
 - Resume link points to `/resume.pdf`
+
+## Migration from Create React App
+
+This project was successfully migrated from Create React App to Vite for better performance and modern tooling:
+
+### Key Benefits
+- **⚡ 10x faster development server** with instant hot module replacement
+- **🏗️ Modern build pipeline** using Rollup and ESBuild  
+- **📦 Smaller bundle sizes** with better tree-shaking
+- **🔮 Future-proof** with active development and modern standards
+
+### Changes Made
+- Removed deprecated `react-scripts` dependency
+- Added Vite 7.1.1 and @vitejs/plugin-react
+- Moved `index.html` from `public/` to root directory for Vite
+- Updated all package.json scripts to use Vite commands
+- Renamed `.js` files to `.jsx` for proper JSX handling
+- Updated import paths and build configuration
 
 ## Future Enhancement Ideas
 

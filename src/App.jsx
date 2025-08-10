@@ -4,12 +4,47 @@ import './App.css';
 function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [selectedSection, setSelectedSection] = useState('highlights');
 
-  // Sample photos - you can add more by adding JPG files to public/images/
-  const photos = [
-    { src: '/images/IMG_6959.jpg', alt: 'Travel Photo 1' },
-    // Add more photos here as you add them to the images folder
-  ];
+  // Generate photo data from folder structure
+  const generatePhotos = () => {
+    const highlights = [];
+    const sections = {
+      travel: [],
+      nature: [],
+      city: []
+    };
+
+    // Generate highlights (9 photos)
+    for (let i = 1; i <= 9; i++) {
+      highlights.push({
+        src: `/photos/highlights/highlight_${i}.jpg`,
+        alt: `Highlight ${i}`,
+        category: 'highlights'
+      });
+    }
+
+    // Generate section photos
+    const sectionConfig = {
+      travel: { count: 2, name: 'Travel' },
+      nature: { count: 2, name: 'Nature' },
+      city: { count: 2, name: 'City' }
+    };
+
+    Object.entries(sectionConfig).forEach(([key, config]) => {
+      for (let i = 1; i <= config.count; i++) {
+        sections[key].push({
+          src: `/photos/sections/${key}/${key}_${i}.jpg`,
+          alt: `${config.name} ${i}`,
+          category: key
+        });
+      }
+    });
+
+    return { highlights, sections };
+  };
+
+  const { highlights, sections } = generatePhotos();
 
   useEffect(() => {
     const savedMode = localStorage.getItem('darkMode');
@@ -103,7 +138,7 @@ function App() {
             </div>
 
             <div className="project-card">
-              <h3 className="project-title">⛴️ AIS forecaster</h3>
+              <h3 className="project-title">⛴️ AIS Forecaster</h3>
               <p className="project-description">
                 Predicting position of cargo ships using AIS data.
               </p>

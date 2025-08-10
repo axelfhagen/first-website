@@ -1,70 +1,144 @@
-# Getting Started with Create React App
+# Axel Hagen - Portfolio Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, minimalistic personal portfolio website with smooth macOS-like design elements. Built with React 19 and Vite, featuring glassmorphism UI, dark mode support, and polished animations.
 
-## Available Scripts
+## 🚀 Built With
 
-In the project directory, you can run:
+- **React 19.1.0** - Latest React with functional components and hooks
+- **Vite 7.1.1** - Ultra-fast build tool and development server
+- **CSS3** - Custom properties (CSS variables) for theming
+- **Modern JavaScript** - ES6+ features and modules
 
-### `npm start`
+## ✨ Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **🌓 Dark Mode**: Toggle with system preference detection and localStorage persistence  
+- **🎨 Glassmorphism Design**: CSS backdrop blur effects and translucent cards
+- **📱 Responsive Layout**: Works beautifully on all screen sizes
+- **⚡ Lightning Fast**: Vite provides near-instant hot module replacement
+- **🖼️ Photography Lightbox**: Click to expand photos in modal view
+- **🎯 Smooth Navigation**: Fixed floating navigation with smooth scrolling
+- **♿ Accessible**: Proper ARIA labels and semantic HTML
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Development
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (v16 or higher)
+- npm or yarn
 
-### `npm run build`
+### Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/axelhagen/my-portfolio.git
+   cd my-portfolio
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Start development server**
+   ```bash
+   npm run dev
+   # or
+   npm start
+   ```
+   
+   Opens [http://localhost:3000](http://localhost:3000) with hot reload enabled.
 
-### `npm run eject`
+### Available Scripts
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **`npm run dev`** or **`npm start`** - Start development server with hot reload
+- **`npm run build`** - Create optimized production build in `build/` folder  
+- **`npm run preview`** - Preview production build locally
+- **`npm test`** - Run tests with Vitest
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 📁 Project Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+my-portfolio/
+├── public/                 # Static assets
+│   ├── images/            # Photography portfolio images  
+│   ├── *.pdf             # Resume files
+│   └── favicon.ico       # Site favicon
+├── src/
+│   ├── App.jsx           # Main application component
+│   ├── App.css           # Application styles with CSS variables
+│   ├── index.jsx         # Application entry point
+│   └── index.css         # Global styles
+├── index.html            # HTML template (moved from public/ for Vite)
+├── vite.config.js        # Vite configuration
+└── package.json          # Dependencies and scripts
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🎨 Design System
 
-## Learn More
+### Color Themes
+CSS custom properties enable seamless light/dark mode switching:
+- **Light Mode**: Gradient background (#f5f7fa to #c3cfe2), white glass cards
+- **Dark Mode**: Dark gradient (#1a1a1a to #2d2d30), semi-transparent cards
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Key Design Elements
+- `backdrop-filter: blur(10px)` for glassmorphism effects
+- Rounded corners (12px-20px) throughout the interface
+- Subtle shadows and inset highlights
+- Apple system fonts (-apple-system, BlinkMacSystemFont)
+- Smooth transitions (0.3s ease) on all interactive elements
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🖼️ Adding Photography
 
-### Code Splitting
+To add new photos to the portfolio:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Add image files to `public/images/`
+2. Update the `photos` array in `src/App.jsx`:
+   ```jsx
+   const photos = [
+     { src: '/images/your-photo.jpg', alt: 'Description' },
+     // Add more photos here
+   ];
+   ```
 
-### Analyzing the Bundle Size
+## 🚀 Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Build for Production
+```bash
+npm run build
+```
 
-### Making a Progressive Web App
+This creates a `build/` directory with optimized static files ready for deployment.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Deploy Options
+- **Vercel**: Connect your GitHub repo for automatic deployments
+- **Netlify**: Drag and drop the `build/` folder or connect via Git
+- **GitHub Pages**: Use GitHub Actions with the build files
+- **Any static host**: Upload contents of `build/` directory
 
-### Advanced Configuration
+## 🔧 Migration from Create React App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+This project was migrated from Create React App to Vite for better performance:
 
-### Deployment
+- **⚡ 10x faster development server** with instant hot module replacement
+- **🏗️ Modern build tools** using Rollup and ESBuild  
+- **📦 Smaller bundle sizes** with better tree-shaking
+- **🔮 Future-proof** with continued active development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Key changes made during migration:
+- Removed `react-scripts` dependency
+- Added Vite and @vitejs/plugin-react
+- Moved `index.html` from `public/` to root directory
+- Updated package.json scripts to use Vite commands
+- Renamed `.js` files to `.jsx` for proper JSX handling
 
-### `npm run build` fails to minify
+## 📄 License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/axelhagen/my-portfolio/issues).
+
+---
+
+**Built with ❤️ by Axel Hagen**
