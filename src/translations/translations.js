@@ -142,7 +142,7 @@ export const translations = {
       description: 'Jeg er alltid interessert i nye muligheter og interessante prosjekter.',
       email: 'Send meg en e-post',
       resume: 'Last ned CV',
-      resumeFile: '/Axel_Hagen_CV_Norwegian.pdf'
+      resumeFile: '/Axel_Hagen_CV_norsk.pdf'
     },
     
     // Footer
