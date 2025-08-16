@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import { useTranslation } from './hooks/useTranslation';
+import { useLanguage } from './contexts/LanguageContext';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [selectedSection, setSelectedSection] = useState('highlights');
+  const { t } = useTranslation();
+  const { toggleLanguage, language } = useLanguage();
 
   // Generate photo data from folder structure
   const generatePhotos = () => {
@@ -79,14 +83,19 @@ function App() {
       {/* Navigation */}
       <nav className="nav-bar">
         <div className="nav-links">
-          <a href="#intro" className="nav-link">Home</a>
-          <a href="#projects" className="nav-link">Projects</a>
-          <a href="#photography" className="nav-link">"Plog"</a>
-          <a href="#contact" className="nav-link">Contact</a>
+          <a href="#intro" className="nav-link">{t('nav.home')}</a>
+          <a href="#projects" className="nav-link">{t('nav.projects')}</a>
+          <a href="#photography" className="nav-link">{t('nav.photography')}</a>
+          <a href="#contact" className="nav-link">{t('nav.contact')}</a>
         </div>
-        <button className="dark-mode-toggle" onClick={toggleDarkMode} aria-label="Toggle dark mode">
-          {darkMode ? '☀️' : '🌙'}
-        </button>
+        <div className="nav-controls">
+          <button className="language-toggle" onClick={toggleLanguage} aria-label="Toggle language">
+            {language === 'en' ? '🇳🇴' : '🇬🇧'}
+          </button>
+          <button className="dark-mode-toggle" onClick={toggleDarkMode} aria-label="Toggle dark mode">
+            {darkMode ? '☀️' : '🌙'}
+          </button>
+        </div>
       </nav>
 
       <main className="main-content">
@@ -94,76 +103,75 @@ function App() {
         <section id="intro" className="section intro-section">
           <h1 className="name-title">Axel Friberg Hagen</h1>
           <p className="intro-text">
-            Hey, I'm Axel!👋 Physics and math student from Norway who's into AI and Statistics.
-            I also love to travel ✈️- check out some of my photos below📸
+            {t('intro.greeting')}
           </p>
           <div className="status-indicator">
             <span className="status-dot"></span>
-            Available for new opportunities
+            {t('intro.availability')}
           </div>
           
           <div className="social-links">
             <a href="https://github.com/axelfhagen" className="social-link" target="_blank" rel="noopener noreferrer">
               <img src="/icons/github-logo.svg" alt="" className="social-icon" />
-              GitHub
+              {t('social.github')}
             </a>
             <a href="https://www.linkedin.com/in/axelhagen/" className="social-link" target="_blank" rel="noopener noreferrer">
               <img src="/icons/linkedin-logo.svg" alt="" className="social-icon" />
-              LinkedIn
+              {t('social.linkedin')}
             </a>
             <a href="mailto:axel.hagen@hotmail.com" className="social-link">
               <img src="/icons/email-logo.svg" alt="" className="social-icon" />
-              Email
+              {t('social.email')}
             </a>
           </div>
         </section>
 
         {/* Projects Section */}
         <section id="projects" className="section">
-          <h2 className="section-title">Featured Projects</h2>
+          <h2 className="section-title">{t('projects.title')}</h2>
           <div className="projects-grid">
             <div className="project-card">
-              <h3 className="project-title">🚀 Personal Website</h3>
+              <h3 className="project-title">{t('projects.website.title')}</h3>
               <p className="project-description">
-                This very website! Built with React.
+                {t('projects.website.description')}
               </p>
-              <div className="project-tech">React • CSS3 • Glassmorphism</div>
-              <a href="https://github.com/axelfhagen/first-website" className="project-link">View on GitHub →</a>
+              <div className="project-tech">{t('projects.website.tech')}</div>
+              <a href="https://github.com/axelfhagen/first-website" className="project-link">{t('projects.website.link')}</a>
             </div>
             
             <div className="project-card">
-              <h3 className="project-title">🌱Plant Classifier</h3>
+              <h3 className="project-title">{t('projects.plant.title')}</h3>
               <p className="project-description">
-                Classifying healthy / unhealthy plants with computer vision.
+                {t('projects.plant.description')}
               </p>
-              <div className="project-tech">Python • TensorFlow • Kaggle</div>
-              <a href="https://github.com/axelfhagen/CNN-plant-health-classifier" className="project-link">View on GitHub →</a>
+              <div className="project-tech">{t('projects.plant.tech')}</div>
+              <a href="https://github.com/axelfhagen/CNN-plant-health-classifier" className="project-link">{t('projects.website.link')}</a>
             </div>
 
             <div className="project-card">
-              <h3 className="project-title">⛴️ AIS Forecaster</h3>
+              <h3 className="project-title">{t('projects.ais.title')}</h3>
               <p className="project-description">
-                Predicting position of cargo ships using AIS data.
+                {t('projects.ais.description')}
               </p>
-              <div className="project-tech">Python • sklearn • pandas</div>
-              <a href="https://github.com/axelfhagen/AIS-Forcaster" className="project-link">View on GitHub →</a>
+              <div className="project-tech">{t('projects.ais.tech')}</div>
+              <a href="https://github.com/axelfhagen/AIS-Forcaster" className="project-link">{t('projects.website.link')}</a>
             </div>
 
             <div className="project-card">
-              <h3 className="project-title">📈 LSTM Timeseries</h3>
+              <h3 className="project-title">{t('projects.lstm.title')}</h3>
               <p className="project-description">
-                Predicting future values with Deep Learning.
+                {t('projects.lstm.description')}
               </p>
-              <div className="project-tech">Python • TensorFlow • numpy</div>
-              <a href="https://github.com/axelfhagen/LSTM-timeseries-forecasting" className="project-link">View on GitHub →</a>
+              <div className="project-tech">{t('projects.lstm.tech')}</div>
+              <a href="https://github.com/axelfhagen/LSTM-timeseries-forecasting" className="project-link">{t('projects.website.link')}</a>
             </div>
           </div>
         </section>
 
         {/* Photography Section */}
         <section id="photography" className="section">
-          <h2 className="section-title">"Plog"</h2>
-          <p className="section-subtitle">Capturing moments through Photos</p>
+          <h2 className="section-title">{t('photography.title')}</h2>
+          <p className="section-subtitle">{t('photography.subtitle')}</p>
           
           {/* Section Navigation */}
           <div className="photo-nav">
@@ -171,7 +179,7 @@ function App() {
               className={`photo-nav-btn ${selectedSection === 'highlights' ? 'active' : ''}`}
               onClick={() => setSelectedSection('highlights')}
             >
-              ✨ Highlights
+              {t('photography.nav.highlights')}
             </button>
             {Object.keys(sections).map(section => (
               <button 
@@ -179,9 +187,9 @@ function App() {
                 className={`photo-nav-btn ${selectedSection === section ? 'active' : ''}`}
                 onClick={() => setSelectedSection(section)}
               >
-                {section === 'travel' && '✈️ Travel'}
-                {section === 'nature' && '🌿 Nature'}
-                {section === 'city' && '🏙️ City'}
+                {section === 'travel' && t('photography.nav.travel')}
+                {section === 'nature' && t('photography.nav.nature')}
+                {section === 'city' && t('photography.nav.city')}
               </button>
             ))}
           </div>
@@ -219,16 +227,16 @@ function App() {
 
         {/* Contact Section */}
         <section id="contact" className="section contact-section">
-          <h2 className="section-title">Let's Connect</h2>
+          <h2 className="section-title">{t('contact.title')}</h2>
           <p className="contact-text">
-            I'm always interested in new opportunities and interesting projects.
+            {t('contact.description')}
           </p>
           <div className="contact-methods">
             <a href="mailto:axel.hagen@hotmail.com" className="contact-button">
-              Send me an email
+              {t('contact.email')}
             </a>
-            <a href="/Axel_Hagen_CV_English.pdf" className="contact-button secondary" target="_blank" rel="noopener noreferrer">
-              Download Resume
+            <a href={t('contact.resumeFile')} className="contact-button secondary" target="_blank" rel="noopener noreferrer">
+              {t('contact.resume')}
             </a>
           </div>
         </section>
@@ -239,20 +247,20 @@ function App() {
         <div className="footer-content">
           <div className="footer-info">
             <p className="footer-built">
-              Built with React & lots of ☕ • <a href="https://github.com/axelfhagen/first-website" target="_blank" rel="noopener noreferrer" className="footer-link">View Source</a>
+              {t('footer.built')}<a href="https://github.com/axelfhagen/first-website" target="_blank" rel="noopener noreferrer" className="footer-link">{t('footer.viewSource')}</a>
             </p>
             <p className="footer-contact">
-              Let's get in touch • <a href="mailto:axel.hagen@hotmail.com" className="footer-link">axel.hagen@hotmail.com</a>
+              {t('footer.getInTouch')}<a href="mailto:axel.hagen@hotmail.com" className="footer-link">axel.hagen@hotmail.com</a>
             </p>
           </div>
           <div className="footer-social">
             <a href="https://github.com/axelfhagen" className="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <img src="/icons/github-logo.svg" alt="" className="footer-social-icon" />
-              <span>GitHub</span>
+              <span>{t('social.github')}</span>
             </a>
             <a href="https://www.linkedin.com/in/axelhagen/" className="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <img src="/icons/linkedin-logo.svg" alt="" className="footer-social-icon" />
-              <span>LinkedIn</span>
+              <span>{t('social.linkedin')}</span>
             </a>
           </div>
         </div>

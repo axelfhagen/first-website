@@ -171,6 +171,13 @@ html {
   color: var(--text-accent);
 }
 
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.language-toggle,
 .dark-mode-toggle {
   background: none;
   border: none;
@@ -184,6 +191,7 @@ html {
   justify-content: center;
 }
 
+.language-toggle:hover,
 .dark-mode-toggle:hover {
   background: var(--bg-glass);
   transform: scale(1.1);
