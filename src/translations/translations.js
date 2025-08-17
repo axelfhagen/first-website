@@ -59,13 +59,20 @@ export const translations = {
       }
     },
     
+    // Plog Page
+    plog: {
+      back: 'Back to Home',
+      fullSubtitle: 'A curated collection of moments captured through my travels and explorations',
+      viewAll: 'View Full Collection →'
+    },
+    
     // Contact Section
     contact: {
       title: 'Let\'s Connect :)',
       description: 'I\'m always interested in new opportunities and interesting projects.',
       email: 'Send me an email',
       resume: 'Download Resume',
-      resumeFile: '/Axel_Hagen_CV_English.pdf'
+      resumeFile: 'public/resume/Axel_Hagen_CV_English.pdf'
     },
     
     // Footer
@@ -136,13 +143,20 @@ export const translations = {
       }
     },
     
+    // Plog Page
+    plog: {
+      back: 'Tilbake til Hjemmeside',
+      fullSubtitle: 'En kuratert samling av øyeblikk fanget gjennom mine reiser og utforskninger',
+      viewAll: 'Se Full Samling →'
+    },
+    
     // Contact Section
     contact: {
       title: 'Ta kontakt :)',
       description: 'Jeg er alltid interessert i nye muligheter og interessante prosjekter.',
       email: 'Send meg en e-post',
       resume: 'Last ned CV',
-      resumeFile: '/Axel_Hagen_CV_norsk.pdf'
+      resumeFile: '/public/resume/Axel_Hagen_CV_norsk.pdf'
     },
     
     // Footer
