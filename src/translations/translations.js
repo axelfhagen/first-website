@@ -44,7 +44,8 @@ export const translations = {
         title: '📈 LSTM Timeseries',
         description: 'Predicting future values with Deep Learning.',
         tech: 'Python • TensorFlow • numpy'
-      }
+      },
+      more: 'More Projects →'
     },
     
     // Photography Section
@@ -128,7 +129,8 @@ export const translations = {
         title: '📈 LSTM Tidsserier',
         description: 'Predikering av fremtidige verdier med Deep Learning.',
         tech: 'Python • TensorFlow • numpy'
-      }
+      },
+      more: 'Flere Prosjekter →'
     },
     
     // Photography Section

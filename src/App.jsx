@@ -154,6 +154,13 @@ function App() {
               <a href="https://github.com/axelfhagen/LSTM-timeseries-forecasting" className="project-link">{t('projects.website.link')}</a>
             </div>
           </div>
+          
+          {/* More Projects Button */}
+          <div className="more-projects">
+            <a href="https://github.com/axelfhagen" className="more-projects-button" target="_blank" rel="noopener noreferrer">
+              {t('projects.more')}
+            </a>
+          </div>
         </section>
 
         {/* Photography Section */}
