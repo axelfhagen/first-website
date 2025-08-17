@@ -1,54 +1,39 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
 import { useTranslation } from './hooks/useTranslation';
 import { useLanguage } from './contexts/LanguageContext';
+import { getPreviewPhotos } from './data/photos';
+import SmartImage from './components/SmartImage';
+
+// Development-only image format testing
+if (process.env.NODE_ENV === 'development') {
+  import('./utils/imageFormatTest.js').then(module => {
+    window.testImageFormats = module.testImageFormats;
+  });
+}
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [selectedSection, setSelectedSection] = useState('highlights');
+  const [highlights, setHighlights] = useState([]);
+  const [isLoadingPhotos, setIsLoadingPhotos] = useState(true);
   const { t } = useTranslation();
   const { toggleLanguage, language } = useLanguage();
 
-  // Generate photo data from folder structure
-  const generatePhotos = () => {
-    const highlights = [];
-    const sections = {
-      travel: [],
-      nature: [],
-      city: []
-    };
-
-    // Generate highlights (9 photos)
-    for (let i = 1; i <= 9; i++) {
-      highlights.push({
-        src: `/photos/highlights/highlight_${i}.jpg`,
-        alt: `Highlight ${i}`,
-        category: 'highlights'
-      });
+  // Load preview photos from manifest
+  useEffect(() => {
+    try {
+      setIsLoadingPhotos(true);
+      const previewPhotos = getPreviewPhotos(6); // Get first 6 photos
+      setHighlights(previewPhotos);
+      setIsLoadingPhotos(false);
+    } catch (error) {
+      console.warn('Could not load preview photos:', error);
+      setHighlights([]); // Fallback to empty array
+      setIsLoadingPhotos(false);
     }
-
-    // Generate section photos
-    const sectionConfig = {
-      travel: { count: 2, name: 'Travel' },
-      nature: { count: 2, name: 'Nature' },
-      city: { count: 2, name: 'City' }
-    };
-
-    Object.entries(sectionConfig).forEach(([key, config]) => {
-      for (let i = 1; i <= config.count; i++) {
-        sections[key].push({
-          src: `/photos/sections/${key}/${key}_${i}.jpg`,
-          alt: `${config.name} ${i}`,
-          category: key
-        });
-      }
-    });
-
-    return { highlights, sections };
-  };
-
-  const { highlights, sections } = generatePhotos();
+  }, []);
 
   useEffect(() => {
     const savedMode = localStorage.getItem('darkMode');
@@ -101,6 +86,9 @@ function App() {
       <main className="main-content">
         {/* Intro Section */}
         <section id="intro" className="section intro-section">
+          <div className="profile-image">
+            <img src="public/icons/IMG_3129.png" alt="Axel Friberg Hagen" />
+          </div>
           <h1 className="name-title">Axel Friberg Hagen</h1>
           <p className="intro-text">
             {t('intro.greeting')}
@@ -173,55 +161,48 @@ function App() {
           <h2 className="section-title">{t('photography.title')}</h2>
           <p className="section-subtitle">{t('photography.subtitle')}</p>
           
-          {/* Section Navigation */}
-          <div className="photo-nav">
-            <button 
-              className={`photo-nav-btn ${selectedSection === 'highlights' ? 'active' : ''}`}
-              onClick={() => setSelectedSection('highlights')}
-            >
-              {t('photography.nav.highlights')}
-            </button>
-            {Object.keys(sections).map(section => (
-              <button 
-                key={section}
-                className={`photo-nav-btn ${selectedSection === section ? 'active' : ''}`}
-                onClick={() => setSelectedSection(section)}
-              >
-                {section === 'travel' && t('photography.nav.travel')}
-                {section === 'nature' && t('photography.nav.nature')}
-                {section === 'city' && t('photography.nav.city')}
-              </button>
-            ))}
+          {/* Preview Photo Grid - showing highlights only */}
+          <div className="photo-grid preview-grid">
+            {isLoadingPhotos ? (
+              // Loading placeholders
+              Array.from({ length: 6 }, (_, index) => (
+                <div key={`loading-${index}`} className="photo-item photo-loading">
+                  <div className="photo-thumbnail loading-placeholder">
+                    📷
+                  </div>
+                </div>
+              ))
+            ) : highlights.length > 0 ? (
+              // Actual photos
+              highlights.map((photo, index) => (
+                <div 
+                  key={photo.src || index} 
+                  className="photo-item" 
+                  onClick={() => openLightbox(photo)}
+                >
+                  <SmartImage 
+                    baseSrc={photo.src} 
+                    alt={photo.alt} 
+                    className="photo-thumbnail"
+                  />
+                </div>
+              ))
+            ) : (
+              // No photos found state
+              <div className="no-photos-message">
+                <p>No photos found in highlights folder</p>
+                <p>1. Add photos to: <code>/public/photos/highlights/</code></p>
+                <p>2. Run: <code>npm run scan-photos</code></p>
+                <p>3. Refresh page 📸</p>
+              </div>
+            )}
           </div>
-
-          {/* Photo Grid */}
-          <div className="photo-grid">
-            {selectedSection === 'highlights' && highlights.map((photo, index) => (
-              <div 
-                key={index} 
-                className="photo-item" 
-                onClick={() => openLightbox(photo)}
-              >
-                <img 
-                  src={photo.src} 
-                  alt={photo.alt} 
-                  className="photo-thumbnail"
-                />
-              </div>
-            ))}
-            {selectedSection !== 'highlights' && sections[selectedSection] && sections[selectedSection].map((photo, index) => (
-              <div 
-                key={index} 
-                className="photo-item" 
-                onClick={() => openLightbox(photo)}
-              >
-                <img 
-                  src={photo.src} 
-                  alt={photo.alt} 
-                  className="photo-thumbnail"
-                />
-              </div>
-            ))}
+          
+          {/* View Full Collection Button */}
+          <div className="plog-cta">
+            <Link to="/plog" className="plog-cta-button">
+              {t('plog.viewAll')}
+            </Link>
           </div>
         </section>
 
@@ -271,8 +252,8 @@ function App() {
         <div className="lightbox-overlay" onClick={closeLightbox}>
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
             <button className="lightbox-close" onClick={closeLightbox}>×</button>
-            <img 
-              src={selectedPhoto.src} 
+            <SmartImage 
+              baseSrc={selectedPhoto.src} 
               alt={selectedPhoto.alt} 
               className="lightbox-image"
             />

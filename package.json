@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-router-dom": "^7.8.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -16,7 +17,8 @@
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "scan-photos": "node scripts/scan-photos.js"
   },
   "browserslist": {
     "production": [
