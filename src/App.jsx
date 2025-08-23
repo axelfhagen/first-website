@@ -87,7 +87,7 @@ function App() {
         {/* Intro Section */}
         <section id="intro" className="section intro-section">
           <div className="profile-image">
-            <img src="public/icons/IMG_3129.png" alt="Axel Friberg Hagen" />
+            <img src="/icons/76464829-8eee-4b77-88ab-c9b228e49093.jpg" alt="Axel Friberg Hagen" />
           </div>
           <h1 className="name-title">Axel Friberg Hagen</h1>
           <p className="intro-text">
