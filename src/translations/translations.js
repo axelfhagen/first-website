@@ -18,7 +18,8 @@ export const translations = {
     social: {
       github: 'GitHub',
       linkedin: 'LinkedIn',
-      email: 'Email'
+      email: 'Email',
+      huggingface: 'Hugging Face'
     },
     
     // Projects Section
@@ -51,7 +52,7 @@ export const translations = {
     // Photography Section
     photography: {
       title: '"Plog"',
-      subtitle: 'My Photo-Blog meant to document',
+      subtitle: 'My Photo-Blog meant to document moments without social media',
       nav: {
         highlights: '✨ Highlights',
         travel: '✈️ Travel',
@@ -103,7 +104,8 @@ export const translations = {
     social: {
       github: 'GitHub',
       linkedin: 'LinkedIn',
-      email: 'E-post'
+      email: 'E-post',
+      huggingface: 'Hugging Face'
     },
     
     // Projects Section
@@ -136,7 +138,7 @@ export const translations = {
     // Photography Section
     photography: {
       title: '"Plog"',
-      subtitle: 'Fanger øyeblikk gjennom Bilder',
+      subtitle: 'En Photo-blog ment for å dokumentere og dele eventyr uten sosiale medier',
       nav: {
         highlights: '✨ Høydepunkter',
         travel: '✈️ Reise',
