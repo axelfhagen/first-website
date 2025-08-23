@@ -1,0 +1,30 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle with glassmorphism effect -->
+  <circle cx="256" cy="256" r="240" fill="url(#gradient)" opacity="0.9"/>
+  <circle cx="256" cy="256" r="240" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  
+  <!-- Monogram "AH" -->
+  <g filter="url(#glow)">
+    <!-- Letter A -->
+    <path d="M 140 380 L 180 260 L 200 260 L 240 380 L 220 380 L 210 350 L 170 350 L 160 380 Z M 175 320 L 205 320 L 190 280 Z" 
+          fill="white" font-family="system-ui" font-weight="700"/>
+    
+    <!-- Letter H -->
+    <path d="M 280 260 L 280 380 L 300 380 L 300 330 L 340 330 L 340 380 L 360 380 L 360 260 L 340 260 L 340 310 L 300 310 L 300 260 Z" 
+          fill="white" font-family="system-ui" font-weight="700"/>
+  </g>
+</svg>

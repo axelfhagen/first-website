@@ -27,7 +27,7 @@ export const translations = {
       title: 'Projects',
       website: {
         title: '🚀 Personal Website',
-        description: 'This very website! Built with React.',
+        description: 'This very website! Built with React. \n',
         tech: 'React • CSS3 • Glassmorphism',
         link: 'View on GitHub →'
       },

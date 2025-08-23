@@ -1,51 +1,51 @@
 :root {
   /* Light mode colors */
-  --bg-primary: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  --background-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --bg-primary: linear-gradient(135deg, #f0f4f0 0%, #c8d4c8 100%);
+  --background-gradient: linear-gradient(135deg, #f0f4f0 0%, #c8d4c8 100%);
   --bg-glass: rgba(255, 255, 255, 0.8);
   --text-primary: #1d1d1f;
   --text-color: #1d1d1f;
   --text-secondary: #515154;
   --text-muted: #515154;
-  --text-accent: #007AFF;
-  --primary-color: #007AFF;
-  --primary-color-rgb: 0, 122, 255;
-  --secondary-color: #0056CC;
+  --text-accent: #228B22;
+  --primary-color: #228B22;
+  --primary-color-rgb: 34, 139, 34;
+  --secondary-color: #1B6B1B;
   --accent-green: #68d391;
   --border-glass: rgba(255, 255, 255, 0.2);
   --shadow-light: rgba(0, 0, 0, 0.1);
   --shadow-heavy: rgba(0, 0, 0, 0.15);
   
   /* Background gradient colors */
-  --gradient-1: rgba(139, 69, 19, 0.03);
-  --gradient-2: rgba(0, 122, 255, 0.04);
-  --gradient-3: rgba(255, 99, 71, 0.02);
-  --gradient-4: rgba(50, 205, 50, 0.03);
+  --gradient-1: rgba(34, 139, 34, 0.04);
+  --gradient-2: rgba(46, 125, 46, 0.05);
+  --gradient-3: rgba(85, 107, 47, 0.03);
+  --gradient-4: rgba(60, 179, 113, 0.04);
 }
 
 .App.dark {
   /* Dark mode colors */
-  --bg-primary: linear-gradient(135deg, #1a1a1a 0%, #2d2d30 100%);
-  --background-gradient: linear-gradient(135deg, #1a1a1a 0%, #2d2d30 100%);
+  --bg-primary: linear-gradient(135deg, #0f1a0f 0%, #1a2d1a 100%);
+  --background-gradient: linear-gradient(135deg, #0f1a0f 0%, #1a2d1a 100%);
   --bg-glass: rgba(255, 255, 255, 0.1);
   --text-primary: #ffffff;
   --text-color: #ffffff;
   --text-secondary: #a1a1a6;
   --text-muted: #a1a1a6;
-  --text-accent: #007AFF;
-  --primary-color: #007AFF;
-  --primary-color-rgb: 0, 122, 255;
-  --secondary-color: #0056CC;
+  --text-accent: #228B22;
+  --primary-color: #228B22;
+  --primary-color-rgb: 34, 139, 34;
+  --secondary-color: #1B6B1B;
   --accent-green: #68d391;
   --border-glass: rgba(255, 255, 255, 0.1);
   --shadow-light: rgba(0, 0, 0, 0.3);
   --shadow-heavy: rgba(0, 0, 0, 0.4);
   
   /* Dark mode gradient colors */
-  --gradient-1: rgba(139, 69, 19, 0.08);
-  --gradient-2: rgba(0, 122, 255, 0.1);
-  --gradient-3: rgba(255, 99, 71, 0.06);
-  --gradient-4: rgba(50, 205, 50, 0.08);
+  --gradient-1: rgba(34, 139, 34, 0.09);
+  --gradient-2: rgba(46, 125, 46, 0.11);
+  --gradient-3: rgba(85, 107, 47, 0.07);
+  --gradient-4: rgba(60, 179, 113, 0.09);
 }
 
 * {
@@ -329,7 +329,7 @@ html {
   object-fit: cover;
   object-position: center;
   box-shadow: 
-    0 12px 32px rgba(0, 122, 255, 0.15),
+    0 12px 32px rgba(34, 139, 34, 0.15),
     0 6px 16px rgba(0, 0, 0, 0.1);
   border: 3px solid rgba(255, 255, 255, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -338,7 +338,7 @@ html {
 .profile-image img:hover {
   transform: scale(1.05);
   box-shadow: 
-    0 12px 32px rgba(0, 122, 255, 0.2),
+    0 12px 32px rgba(34, 139, 34, 0.2),
     0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
@@ -374,7 +374,7 @@ html {
 
 .social-link:hover {
   color: var(--text-accent);
-  background: rgba(0, 122, 255, 0.1);
+  background: rgba(34, 139, 34, 0.1);
 }
 
 .social-link:hover .social-icon {
@@ -420,7 +420,7 @@ html {
 
 .project-tech {
   font-size: 0.875rem;
-  color: var(--accent-green);
+  color: #d45858;
   font-weight: 500;
   margin-bottom: 1.25rem;
 }
@@ -434,7 +434,7 @@ html {
 }
 
 .project-link:hover {
-  color: #0056D6;
+  color: var(--secondary-color);
 }
 
 .more-projects {
@@ -448,7 +448,7 @@ html {
   align-items: center;
   gap: 0.5rem;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, var(--text-accent), #0056CC);
+  background: linear-gradient(135deg, var(--text-accent), var(--secondary-color));
   color: white;
   text-decoration: none;
   font-weight: 600;
@@ -456,14 +456,14 @@ html {
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(34, 139, 34, 0.3);
 }
 
 
 .more-projects-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 122, 255, 0.4);
-  background: linear-gradient(135deg, #0056CC, var(--text-accent));
+  box-shadow: 0 8px 25px rgba(34, 139, 34, 0.4);
+  background: linear-gradient(135deg, var(--secondary-color), var(--text-accent));
 }
 
 /* Photography Section */
@@ -526,7 +526,7 @@ html {
   align-items: center;
   gap: 0.5rem;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, var(--text-accent), #0056CC);
+  background: linear-gradient(135deg, var(--text-accent), var(--secondary-color));
   color: white;
   text-decoration: none;
   font-weight: 600;
@@ -534,13 +534,13 @@ html {
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(34, 139, 34, 0.3);
 }
 
 .plog-cta-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 122, 255, 0.4);
-  background: linear-gradient(135deg, #0056CC, var(--text-accent));
+  box-shadow: 0 8px 25px rgba(34, 139, 34, 0.4);
+  background: linear-gradient(135deg, var(--secondary-color), var(--text-accent));
 }
 
 .photo-item {
@@ -593,7 +593,7 @@ html {
 }
 
 .no-photos-message code {
-  background: rgba(0, 122, 255, 0.1);
+  background: rgba(34, 139, 34, 0.1);
   padding: 0.25rem 0.5rem;
   border-radius: 6px;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
@@ -742,9 +742,9 @@ html {
 }
 
 .contact-button:hover {
-  background: #0056D6;
+  background: var(--secondary-color);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 122, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(34, 139, 34, 0.3);
 }
 
 .contact-button.secondary {
@@ -809,7 +809,7 @@ html {
 }
 
 .footer-link:hover {
-  color: #0056D6;
+  color: var(--secondary-color);
 }
 
 .footer-social {
@@ -840,7 +840,7 @@ html {
 
 .footer-social-link:hover {
   color: var(--text-accent);
-  background: rgba(0, 122, 255, 0.1);
+  background: rgba(34, 139, 34, 0.1);
 }
 
 .footer-social-link:hover .footer-social-icon {
