@@ -444,24 +444,26 @@ html {
 }
 
 .more-projects-button {
-  background: var(--bg-glass);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border-glass);
-  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   padding: 1rem 2rem;
-  color: var(--text-accent);
+  background: linear-gradient(135deg, var(--text-accent), #0056CC);
+  color: white;
   text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px var(--shadow-light);
+  box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
 }
 
+
 .more-projects-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px var(--shadow-heavy);
-  color: var(--secondary-color);
-  background: rgba(var(--primary-color-rgb), 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 122, 255, 0.4);
+  background: linear-gradient(135deg, #0056CC, var(--text-accent));
 }
 
 /* Photography Section */
