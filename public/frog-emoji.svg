@@ -1,0 +1,49 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="frogGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ade80;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16a34a;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="eyeGradient" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#f0f0f0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0e0e0;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Main frog body -->
+  <ellipse cx="256" cy="300" rx="200" ry="160" fill="url(#frogGradient)"/>
+  
+  <!-- Frog head -->
+  <ellipse cx="256" cy="200" rx="140" ry="120" fill="url(#frogGradient)"/>
+  
+  <!-- Eye bumps -->
+  <ellipse cx="210" cy="160" rx="35" ry="40" fill="url(#frogGradient)"/>
+  <ellipse cx="302" cy="160" rx="35" ry="40" fill="url(#frogGradient)"/>
+  
+  <!-- Eyes -->
+  <circle cx="210" cy="155" r="25" fill="url(#eyeGradient)"/>
+  <circle cx="302" cy="155" r="25" fill="url(#eyeGradient)"/>
+  
+  <!-- Pupils -->
+  <circle cx="210" cy="155" r="12" fill="#000000"/>
+  <circle cx="302" cy="155" r="12" fill="#000000"/>
+  
+  <!-- Eye shine -->
+  <circle cx="215" cy="150" r="4" fill="#ffffff"/>
+  <circle cx="307" cy="150" r="4" fill="#ffffff"/>
+  
+  <!-- Nostrils -->
+  <ellipse cx="240" cy="190" rx="3" ry="2" fill="#2d5016"/>
+  <ellipse cx="272" cy="190" rx="3" ry="2" fill="#2d5016"/>
+  
+  <!-- Mouth -->
+  <path d="M 200 220 Q 256 240 312 220" stroke="#2d5016" stroke-width="4" fill="none" stroke-linecap="round"/>
+  
+  <!-- Front feet -->
+  <ellipse cx="180" cy="380" rx="25" ry="35" fill="url(#frogGradient)"/>
+  <ellipse cx="332" cy="380" rx="25" ry="35" fill="url(#frogGradient)"/>
+  
+  <!-- Subtle highlight on head -->
+  <ellipse cx="256" cy="180" rx="80" ry="40" fill="rgba(255,255,255,0.2)"/>
+</svg>

@@ -1,23 +1,29 @@
 # Axel Hagen - Portfolio Website
 
-A modern, minimalistic personal portfolio website with smooth macOS-like design elements. Built with React 19 and Vite, featuring glassmorphism UI, dark mode support, and polished animations.
+A modern, minimalistic personal portfolio website with smooth macOS-like design elements. Built with React 19 and Vite, featuring glassmorphism UI, dark mode support, multilingual support, and polished animations.
 
 ## 🚀 Built With
 
 - **React 19.1.0** - Latest React with functional components and hooks
+- **React Router DOM 7.8.1** - Client-side routing for multi-page experience
 - **Vite 7.1.1** - Ultra-fast build tool and development server
+- **Vitest 3.2.4** - Modern testing framework
 - **CSS3** - Custom properties (CSS variables) for theming
 - **Modern JavaScript** - ES6+ features and modules
 
 ## ✨ Features
 
+- **🌐 Multilingual Support**: English/Norwegian language toggle with context-based translations
 - **🌓 Dark Mode**: Toggle with system preference detection and localStorage persistence  
-- **🎨 Glassmorphism Design**: CSS backdrop blur effects and translucent cards
+- **🎨 Glassmorphism Design**: CSS backdrop blur effects and translucent cards with green accent color
 - **📱 Responsive Layout**: Works beautifully on all screen sizes
 - **⚡ Lightning Fast**: Vite provides near-instant hot module replacement
-- **🖼️ Photography Lightbox**: Click to expand photos in modal view
+- **🖼️ Smart Photo Gallery**: Organized photo sections with lightbox modal viewing
+- **📝 Photo Blog (Plog)**: Dedicated photography showcase with curated highlights
 - **🎯 Smooth Navigation**: Fixed floating navigation with smooth scrolling
+- **🔗 Routing**: Multi-page experience with React Router
 - **♿ Accessible**: Proper ARIA labels and semantic HTML
+- **🤖 AI Integration**: Hugging Face profile integration
 
 ## 🛠️ Development
 
@@ -54,20 +60,37 @@ A modern, minimalistic personal portfolio website with smooth macOS-like design 
 - **`npm run build`** - Create optimized production build in `build/` folder  
 - **`npm run preview`** - Preview production build locally
 - **`npm test`** - Run tests with Vitest
+- **`npm run scan-photos`** - Automatically discover and organize photos in the gallery
 
 ### 📁 Project Structure
 
 ```
 my-portfolio/
 ├── public/                 # Static assets
-│   ├── images/            # Photography portfolio images  
-│   ├── *.pdf             # Resume files
-│   └── favicon.ico       # Site favicon
+│   ├── photos/            # Photography portfolio organized by sections
+│   │   ├── highlights/    # Curated highlight photos for Plog
+│   │   └── sections/      # Categorized photos (nature, city, travel)
+│   ├── icons/             # Favicon and logo variations 
+│   ├── resume/            # Resume files in multiple languages
+│   └── manifest.json      # PWA manifest
 ├── src/
 │   ├── App.jsx           # Main application component
-│   ├── App.css           # Application styles with CSS variables
-│   ├── index.jsx         # Application entry point
-│   └── index.css         # Global styles
+│   ├── Router.jsx        # React Router configuration
+│   ├── components/       # Reusable components
+│   │   └── SmartImage.jsx # Smart image loading component
+│   ├── pages/            # Page components
+│   │   └── Plog.jsx      # Photography blog page
+│   ├── contexts/         # React contexts
+│   │   └── LanguageContext.jsx # Language/translation context
+│   ├── hooks/            # Custom React hooks
+│   │   └── useTranslation.js # Translation hook
+│   ├── config/           # Configuration files
+│   ├── data/             # Static data
+│   ├── translations/     # Translation files
+│   ├── utils/            # Utility functions
+│   └── styles/           # Component-specific styles
+├── scripts/              # Build and utility scripts
+│   └── scan-photos.js    # Photo discovery script
 ├── index.html            # HTML template (moved from public/ for Vite)
 ├── vite.config.js        # Vite configuration
 └── package.json          # Dependencies and scripts
@@ -76,9 +99,9 @@ my-portfolio/
 ## 🎨 Design System
 
 ### Color Themes
-CSS custom properties enable seamless light/dark mode switching:
-- **Light Mode**: Gradient background (#f5f7fa to #c3cfe2), white glass cards
-- **Dark Mode**: Dark gradient (#1a1a1a to #2d2d30), semi-transparent cards
+CSS custom properties enable seamless light/dark mode switching with green accent colors:
+- **Light Mode**: Gradient background with green accents, white glass cards with green highlights
+- **Dark Mode**: Dark gradient with green accents, semi-transparent cards with green borders
 
 ### Key Design Elements
 - `backdrop-filter: blur(10px)` for glassmorphism effects
@@ -87,18 +110,29 @@ CSS custom properties enable seamless light/dark mode switching:
 - Apple system fonts (-apple-system, BlinkMacSystemFont)
 - Smooth transitions (0.3s ease) on all interactive elements
 
-## 🖼️ Adding Photography
+## 🖼️ Photography Management
 
-To add new photos to the portfolio:
+### Automated Photo Discovery
+The portfolio includes an automated photo discovery system:
 
-1. Add image files to `public/images/`
-2. Update the `photos` array in `src/App.jsx`:
-   ```jsx
-   const photos = [
-     { src: '/images/your-photo.jpg', alt: 'Description' },
-     // Add more photos here
-   ];
-   ```
+```bash
+npm run scan-photos
+```
+
+This script automatically scans the `public/photos/` directory and generates the photo configuration.
+
+### Photo Organization Structure
+```
+public/photos/
+├── highlights/          # Featured photos for the Plog page
+├── sections/           # Categorized gallery photos
+│   ├── nature/         # Nature photography
+│   ├── city/           # Urban/city photography  
+│   └── travel/         # Travel photography
+```
+
+### Manual Photo Management
+Photos are configured in `src/config/photos.js` and support multiple image formats (JPG, PNG, WEBP). The SmartImage component automatically handles format detection and optimization.
 
 ## 🚀 Deployment
 
@@ -127,9 +161,11 @@ This project was migrated from Create React App to Vite for better performance:
 Key changes made during migration:
 - Removed `react-scripts` dependency
 - Added Vite and @vitejs/plugin-react
+- Added Vitest for modern testing
 - Moved `index.html` from `public/` to root directory
 - Updated package.json scripts to use Vite commands
 - Renamed `.js` files to `.jsx` for proper JSX handling
+- Enhanced with React Router for multi-page experience
 
 ## 📄 License
 

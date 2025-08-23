@@ -1,11 +1,12 @@
 #!/bin/bash
 
-if [ "$1" != "monogram" ] && [ "$1" != "frog" ]; then
-    echo "Usage: ./switch-icons.sh [monogram|frog]"
+if [ "$1" != "monogram" ] && [ "$1" != "frog" ] && [ "$1" != "frog-emoji" ]; then
+    echo "Usage: ./switch-icons.sh [monogram|frog|frog-emoji]"
     echo ""
     echo "Available options:"
-    echo "  monogram - Professional AH monogram"
-    echo "  frog     - Crazy frog (for the bold)"
+    echo "  monogram   - Professional AH monogram"
+    echo "  frog       - Crazy frog (for the bold)"
+    echo "  frog-emoji - Clean frog emoji (cute & professional)"
     exit 1
 fi
 
@@ -51,6 +52,34 @@ elif [ "$ICON_SET" = "frog" ]; then
 {
   "short_name": "🐸 Axel Hagen",
   "name": "Axel Hagen - Portfolio (Frog Mode)",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#4ade80",
+  "background_color": "#dcfce7"
+}
+EOF
+elif [ "$ICON_SET" = "frog-emoji" ]; then
+    cat > public/manifest.json << 'EOF'
+{
+  "short_name": "🐸 Axel Hagen",
+  "name": "Axel Hagen - Portfolio (Frog Emoji)",
   "icons": [
     {
       "src": "favicon.ico",
