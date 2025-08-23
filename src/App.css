@@ -17,10 +17,10 @@
   --shadow-heavy: rgba(0, 0, 0, 0.15);
   
   /* Background gradient colors */
-  --gradient-1: rgba(34, 139, 34, 0.04);
-  --gradient-2: rgba(46, 125, 46, 0.05);
-  --gradient-3: rgba(85, 107, 47, 0.03);
-  --gradient-4: rgba(60, 179, 113, 0.04);
+  --gradient-1: rgba(34, 139, 34, 0.06);
+  --gradient-2: rgba(46, 125, 46, 0.07);
+  --gradient-3: rgba(85, 107, 47, 0.05);
+  --gradient-4: rgba(60, 179, 113, 0.06);
 }
 
 .App.dark {
@@ -42,10 +42,10 @@
   --shadow-heavy: rgba(0, 0, 0, 0.4);
   
   /* Dark mode gradient colors */
-  --gradient-1: rgba(34, 139, 34, 0.09);
-  --gradient-2: rgba(46, 125, 46, 0.11);
-  --gradient-3: rgba(85, 107, 47, 0.07);
-  --gradient-4: rgba(60, 179, 113, 0.09);
+  --gradient-1: rgba(34, 139, 34, 0.12);
+  --gradient-2: rgba(46, 125, 46, 0.14);
+  --gradient-3: rgba(85, 107, 47, 0.10);
+  --gradient-4: rgba(60, 179, 113, 0.12);
 }
 
 * {
@@ -420,7 +420,7 @@ html {
 
 .project-tech {
   font-size: 0.875rem;
-  color: #d45858;
+  color:  #64748B;
   font-weight: 500;
   margin-bottom: 1.25rem;
 }

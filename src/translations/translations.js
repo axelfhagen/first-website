@@ -27,7 +27,7 @@ export const translations = {
       title: 'Projects',
       website: {
         title: '🚀 Personal Website',
-        description: 'This very website! Built with React. \n',
+        description: 'This very website! Built with React and modern web technologies.',
         tech: 'React • CSS3 • Glassmorphism',
         link: 'View on GitHub →'
       },
@@ -113,7 +113,7 @@ export const translations = {
       title: 'Prosjekter',
       website: {
         title: '🚀 Personlig Nettside',
-        description: 'Denne nettsiden! Bygget med React.',
+        description: 'Denne nettsiden! Bygget med React og moderne web teknologier.',
         tech: 'React • CSS3 • Glassmorphism',
         link: 'Se på GitHub →'
       },
