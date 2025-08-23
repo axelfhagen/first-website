@@ -93,11 +93,6 @@ function App() {
           <p className="intro-text">
             {t('intro.greeting')}
           </p>
-          <div className="status-indicator">
-            <span className="status-dot"></span>
-            {t('intro.availability')}
-          </div>
-          
           <div className="social-links">
             <a href="https://github.com/axelfhagen" className="social-link" target="_blank" rel="noopener noreferrer">
               <img src="/icons/github-logo.svg" alt="" className="social-icon" />
@@ -107,11 +102,16 @@ function App() {
               <img src="/icons/linkedin-logo.svg" alt="" className="social-icon" />
               {t('social.linkedin')}
             </a>
+            <a href="https://huggingface.co/axelfhagen" className="social-link" target="_blank" rel="noopener noreferrer">
+              <img src="/icons/Huggingface--Streamline-Simple-Icons.svg" alt="" className="social-icon" />
+              {t('social.huggingface')}
+            </a>
             <a href="mailto:axel.hagen@hotmail.com" className="social-link">
               <img src="/icons/email-logo.svg" alt="" className="social-icon" />
               {t('social.email')}
             </a>
           </div>
+
         </section>
 
         {/* Projects Section */}
@@ -142,7 +142,7 @@ function App() {
                 {t('projects.ais.description')}
               </p>
               <div className="project-tech">{t('projects.ais.tech')}</div>
-              <a href="https://github.com/axelfhagen/AIS-Forcaster" className="project-link">{t('projects.website.link')}</a>
+              <a href="https://github.com/axelfhagen/AIS-forecast" className="project-link">{t('projects.website.link')}</a>
             </div>
 
             <div className="project-card">
