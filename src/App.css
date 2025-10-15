@@ -56,12 +56,17 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #f0f4f0;
-  transition: background-color 0.3s ease;
+  background: #f0f4f0;
+  transition: background 0.3s ease;
+  min-height: 100%;
 }
 
 html.dark-mode {
-  background-color: #0f1a0f;
+  background: #0f1a0f;
+}
+
+body {
+  background: transparent;
 }
 
 .App {

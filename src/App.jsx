@@ -87,7 +87,7 @@ function App() {
         {/* Intro Section */}
         <section id="intro" className="section intro-section">
           <div className="profile-image">
-            <img src="/icons/76464829-8eee-4b77-88ab-c9b228e49093.jpg" alt="Axel Friberg Hagen" />
+            <img src="/icons/profile/76464829-8eee-4b77-88ab-c9b228e49093.jpg" alt="Axel Friberg Hagen" />
           </div>
           <h1 className="name-title">Axel Friberg Hagen</h1>
           <p className="intro-text">
@@ -95,15 +95,15 @@ function App() {
           </p>
           <div className="social-links">
             <a href="https://github.com/axelfhagen" className="social-link" target="_blank" rel="noopener noreferrer">
-              <img src="/icons/github-logo.svg" alt="" className="social-icon" />
+              <img src="/icons/social/github-logo.svg" alt="" className="social-icon" />
               {t('social.github')}
             </a>
             <a href="https://www.linkedin.com/in/axelhagen/" className="social-link" target="_blank" rel="noopener noreferrer">
-              <img src="/icons/linkedin-logo.svg" alt="" className="social-icon" />
+              <img src="/icons/social/linkedin-logo.svg" alt="" className="social-icon" />
               {t('social.linkedin')}
             </a>
             <a href="mailto:axel.hagen@hotmail.com" className="social-link">
-              <img src="/icons/email-logo.svg" alt="" className="social-icon" />
+              <img src="/icons/social/email-logo.svg" alt="" className="social-icon" />
               {t('social.email')}
             </a>
           </div>
@@ -239,11 +239,11 @@ function App() {
           </div>
           <div className="footer-social">
             <a href="https://github.com/axelfhagen" className="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <img src="/icons/github-logo.svg" alt="" className="footer-social-icon" />
+              <img src="/icons/social/github-logo.svg" alt="" className="footer-social-icon" />
               <span>{t('social.github')}</span>
             </a>
             <a href="https://www.linkedin.com/in/axelhagen/" className="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <img src="/icons/linkedin-logo.svg" alt="" className="footer-social-icon" />
+              <img src="/icons/social/linkedin-logo.svg" alt="" className="footer-social-icon" />
               <span>{t('social.linkedin')}</span>
             </a>
           </div>
