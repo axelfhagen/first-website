@@ -37,12 +37,11 @@ function App() {
 
   useEffect(() => {
     const savedMode = localStorage.getItem('darkMode');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
+
     if (savedMode !== null) {
       setDarkMode(savedMode === 'true');
     } else {
-      setDarkMode(prefersDark);
+      setDarkMode(false); // Default to light mode
     }
   }, []);
 
@@ -101,10 +100,6 @@ function App() {
             <a href="https://www.linkedin.com/in/axelhagen/" className="social-link" target="_blank" rel="noopener noreferrer">
               <img src="/icons/linkedin-logo.svg" alt="" className="social-icon" />
               {t('social.linkedin')}
-            </a>
-            <a href="https://huggingface.co/axelfhagen" className="social-link" target="_blank" rel="noopener noreferrer">
-              <img src="/icons/Huggingface--Streamline-Simple-Icons.svg" alt="" className="social-icon" />
-              {t('social.huggingface')}
             </a>
             <a href="mailto:axel.hagen@hotmail.com" className="social-link">
               <img src="/icons/email-logo.svg" alt="" className="social-icon" />

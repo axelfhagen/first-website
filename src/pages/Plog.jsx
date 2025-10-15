@@ -144,7 +144,7 @@ function Plog() {
             className="plog-nav-btn plog-more-btn"
             onClick={() => setShowAllTrips(true)}
           >
-            More trips
+            More
           </button>
         )}
       </nav>
@@ -258,7 +258,7 @@ function Plog() {
         <div className="plog-modal-overlay" onClick={() => setShowAllTrips(false)}>
           <div className="plog-modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="plog-modal-header">
-              <h2>All Trips</h2>
+              <h2>All Sections</h2>
               <button className="plog-modal-close" onClick={() => setShowAllTrips(false)}>×</button>
             </div>
             <div className="plog-trips-grid">
