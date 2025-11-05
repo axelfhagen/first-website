@@ -5,9 +5,6 @@ export const PHOTO_MANIFEST = {
   recent: [
     "IMG_3588.png",
     "IMG_3701.png",
-    "IMG_3703.png",
-    "IMG_3733.png",
-    "IMG_3736.png",
     "IMG_3752.png",
     "IMG_3760.png",
     "IMG_3762.png",
@@ -29,7 +26,6 @@ export const PHOTO_MANIFEST = {
     "IMG_3292.png",
     "IMG_3581.png",
     "IMG_3588.png",
-    "IMG_3701.png",
     "IMG_3703.png",
     "IMG_3855.png",
     "IMG_3987.png",
@@ -39,50 +35,67 @@ export const PHOTO_MANIFEST = {
   ],
   
   trips: {
-    "bali-escape": {
-      title: "Bali Escape",
-      date: "June 2023",
-      folder: "bali-escape",
+    "beijing-2025": {
+      title: "Beijing Solo",
+      date: "August 2025",
+      folder: "beijing-2025",
       images: [
-    "city_2.jpg",
+    "IMG_2493.png",
+    "city_1.jpg",
       ]
     },
-    "iceland-adventure": {
-      title: "Iceland Adventure",
-      date: "September 2023",
-      folder: "iceland-adventure",
+    "hanoi-2025": {
+      title: "hanoi 2025",
+      date: "",
+      folder: "hanoi-2025",
       images: [
-    "nature_1.jpg",
+    // No photos found - add some images to this folder!
       ]
     },
-    "mt-fuji-2024": {
+    "jeju-islands-2025": {
+      title: "Tokyo Summer Adventure",
+      date: "August 2023",
+      folder: "jeju-islands-2025",
+      images: [
+    "travel_2.jpg",
+      ]
+    },
+    "kyoto-osaka-nara-2025": {
+      title: "Tokyo Summer Adventure",
+      date: "August 2023",
+      folder: "kyoto-osaka-nara-2025",
+      images: [
+    "travel_2.jpg",
+      ]
+    },
+    "mt-fuji-2025": {
       title: "Trip to Mt. Fuji",
-      date: "March 2024",
-      folder: "mt-fuji-2024",
+      date: "September 8th 2025",
+      folder: "mt-fuji-2025",
       images: [
     "travel_1.jpg",
       ]
     },
-    "norway-2022": {
-      title: "Norway Adventure",
-      date: "October 2022",
-      folder: "norway-2022",
-      images: [
-    "city_1.jpg",
-      ]
-    },
-    "paris-weekend": {
-      title: "Paris Weekend",
-      date: "December 2023",
-      folder: "paris-weekend",
-      images: [
-    "nature_2.jpg",
-      ]
-    },
-    "tokyo-summer": {
+    "tokyo-2025": {
       title: "Tokyo Summer Adventure",
       date: "August 2023",
-      folder: "tokyo-summer",
+      folder: "tokyo-2025",
+      images: [
+    "travel_2.jpg",
+      ]
+    },
+    "yakushima-2025": {
+      title: "Yakushima Hiking week",
+      date: "17th - 23rd November 2025",
+      folder: "yakushima-2025",
+      images: [
+    "travel_2.jpg",
+      ]
+    },
+    "yufu-beppu-2025": {
+      title: "Mt Yufu Hike and Beppu Onsen",
+      date: "October 2025",
+      folder: "yufu-beppu-2025",
       images: [
     "travel_2.jpg",
       ]
