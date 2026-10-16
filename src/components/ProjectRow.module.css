@@ -1,0 +1,86 @@
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3rem 1fr minmax(10rem, auto) 1.5rem;
+  align-items: baseline;
+  gap: var(--space-m);
+  padding-block: var(--space-m);
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  isolation: isolate;
+}
+
+/* Hover wash that slides in from the left. */
+.row::before {
+  content: '';
+  position: absolute;
+  inset: 0 calc(-1 * var(--space-s));
+  z-index: -1;
+  background: var(--paper-raised);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 400ms var(--ease);
+}
+
+.row:hover::before {
+  transform: scaleX(1);
+}
+
+.num {
+  font-size: var(--step--1);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.title {
+  font-size: var(--step-2);
+  line-height: 1.1;
+  transition: color var(--dur) var(--ease);
+}
+
+.row:hover .title {
+  color: var(--accent);
+}
+
+.desc {
+  color: var(--muted);
+  max-width: 34rem;
+}
+
+.tech {
+  font-size: var(--step--1);
+  color: var(--muted);
+  text-align: right;
+}
+
+.arrow {
+  justify-self: end;
+  transition: transform var(--dur) var(--ease);
+}
+
+.row:hover .arrow {
+  transform: translate(3px, -3px);
+}
+
+@media (max-width: 48rem) {
+  .row {
+    grid-template-columns: 2rem 1fr 1.5rem;
+  }
+
+  .tech {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: left;
+  }
+
+  .arrow {
+    grid-column: 3;
+    grid-row: 1;
+  }
+}

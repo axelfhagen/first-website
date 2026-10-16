@@ -1,290 +1,50 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './App.css';
-import { useTranslation } from './hooks/useTranslation';
-import { useLanguage } from './contexts/LanguageContext';
-import { getPreviewPhotos } from './data/photos';
-import SmartImage from './components/SmartImage';
+import { useEffect } from 'react';
+import { Route, Routes, useLocation, useNavigationType } from 'react-router-dom';
+import { useI18n } from './i18n/useI18n.js';
+import Header from './components/Header.jsx';
+import Footer from './components/Footer.jsx';
+import Home from './routes/Home.jsx';
+import Plog from './routes/Plog.jsx';
+import Trip from './routes/Trip.jsx';
+import NotFound from './routes/NotFound.jsx';
 
-// Development-only image format testing
-if (process.env.NODE_ENV === 'development') {
-  import('./utils/imageFormatTest.js').then(module => {
-    window.testImageFormats = module.testImageFormats;
-  });
+/** Scroll to the #hash target, or to the top on a new page. Back/forward keeps the browser's position. */
+function ScrollManager() {
+  const { pathname, hash } = useLocation();
+  const navType = useNavigationType();
+
+  useEffect(() => {
+    if (hash) {
+      const el = document.getElementById(decodeURIComponent(hash.slice(1)));
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+    }
+    if (navType !== 'POP') window.scrollTo(0, 0);
+  }, [pathname, hash, navType]);
+
+  return null;
 }
 
-function App() {
-  const [darkMode, setDarkMode] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [highlights, setHighlights] = useState([]);
-  const [isLoadingPhotos, setIsLoadingPhotos] = useState(true);
-  const { t } = useTranslation();
-  const { toggleLanguage, language } = useLanguage();
-
-  // Load preview photos from manifest
-  useEffect(() => {
-    try {
-      setIsLoadingPhotos(true);
-      const previewPhotos = getPreviewPhotos(6); // Get first 6 photos
-      setHighlights(previewPhotos);
-      setIsLoadingPhotos(false);
-    } catch (error) {
-      console.warn('Could not load preview photos:', error);
-      setHighlights([]); // Fallback to empty array
-      setIsLoadingPhotos(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    const savedMode = localStorage.getItem('darkMode');
-
-    if (savedMode !== null) {
-      setDarkMode(savedMode === 'true');
-    } else {
-      setDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('darkMode', darkMode.toString());
-    document.body.classList.toggle('dark-mode', darkMode);
-    document.documentElement.classList.toggle('dark-mode', darkMode);
-  }, [darkMode]);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
-  const openLightbox = (photo) => {
-    setSelectedPhoto(photo);
-  };
-
-  const closeLightbox = () => {
-    setSelectedPhoto(null);
-  };
-
-  useEffect(() => {
-    if (!selectedPhoto) return;
-
-    const handleKey = (e) => {
-      if (e.key === 'Escape') {
-        setSelectedPhoto(null);
-      } else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-        const idx = highlights.findIndex((p) => p.src === selectedPhoto.src);
-        if (idx === -1 || highlights.length === 0) return;
-        const next = e.key === 'ArrowRight'
-          ? (idx + 1) % highlights.length
-          : (idx - 1 + highlights.length) % highlights.length;
-        setSelectedPhoto(highlights[next]);
-      }
-    };
-
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
-  }, [selectedPhoto, highlights]);
-
+export default function App() {
+  const { t } = useI18n();
   return (
-    <div className={`App ${darkMode ? 'dark' : ''}`}>
-      {/* Navigation */}
-      <nav className="nav-bar">
-        <div className="nav-links">
-          <a href="#intro" className="nav-link">{t('nav.home')}</a>
-          <a href="#projects" className="nav-link">{t('nav.projects')}</a>
-          <a href="#photography" className="nav-link">{t('nav.photography')}</a>
-          <a href="#contact" className="nav-link">{t('nav.contact')}</a>
-        </div>
-        <div className="nav-controls">
-          <button className="language-toggle" onClick={toggleLanguage} aria-label="Toggle language">
-            {language === 'en' ? '🇳🇴' : '🇬🇧'}
-          </button>
-          <button className="dark-mode-toggle" onClick={toggleDarkMode} aria-label="Toggle dark mode">
-            {darkMode ? '☀️' : '🌙'}
-          </button>
-        </div>
-      </nav>
-
-      <main className="main-content">
-        {/* Intro Section */}
-        <section id="intro" className="section intro-section">
-          <div className="profile-image">
-            <img src="/icons/profile/76464829-8eee-4b77-88ab-c9b228e49093.jpg" alt="Axel Friberg Hagen" />
-          </div>
-          <h1 className="name-title">Axel Friberg Hagen</h1>
-          <p className="intro-text">
-            {t('intro.greeting')}
-          </p>
-          <div className="social-links">
-            <a href="https://github.com/axelfhagen" className="social-link" target="_blank" rel="noopener noreferrer">
-              <img src="/icons/social/github-logo.svg" alt="" className="social-icon" />
-              {t('social.github')}
-            </a>
-            <a href="https://www.linkedin.com/in/axelhagen/" className="social-link" target="_blank" rel="noopener noreferrer">
-              <img src="/icons/social/linkedin-logo.svg" alt="" className="social-icon" />
-              {t('social.linkedin')}
-            </a>
-            <a href="mailto:axel.hagen@hotmail.com" className="social-link">
-              <img src="/icons/social/email-logo.svg" alt="" className="social-icon" />
-              {t('social.email')}
-            </a>
-          </div>
-
-        </section>
-
-        {/* Projects Section */}
-        <section id="projects" className="section">
-          <h2 className="section-title">{t('projects.title')}</h2>
-          <div className="projects-grid">
-            <div className="project-card">
-              <h3 className="project-title">{t('projects.website.title')}</h3>
-              <p className="project-description">
-                {t('projects.website.description')}
-              </p>
-              <div className="project-tech">{t('projects.website.tech')}</div>
-              <a href="https://github.com/axelfhagen/first-website" className="project-link">{t('projects.website.link')}</a>
-            </div>
-            
-            <div className="project-card">
-              <h3 className="project-title">{t('projects.plant.title')}</h3>
-              <p className="project-description">
-                {t('projects.plant.description')}
-              </p>
-              <div className="project-tech">{t('projects.plant.tech')}</div>
-              <a href="https://github.com/axelfhagen/CNN-plant-health-classifier" className="project-link">{t('projects.website.link')}</a>
-            </div>
-
-            <div className="project-card">
-              <h3 className="project-title">{t('projects.ais.title')}</h3>
-              <p className="project-description">
-                {t('projects.ais.description')}
-              </p>
-              <div className="project-tech">{t('projects.ais.tech')}</div>
-              <a href="https://github.com/axelfhagen/AIS-forecast" className="project-link">{t('projects.website.link')}</a>
-            </div>
-
-            <div className="project-card">
-              <h3 className="project-title">{t('projects.lstm.title')}</h3>
-              <p className="project-description">
-                {t('projects.lstm.description')}
-              </p>
-              <div className="project-tech">{t('projects.lstm.tech')}</div>
-              <a href="https://github.com/axelfhagen/LSTM-timeseries-forecasting" className="project-link">{t('projects.website.link')}</a>
-            </div>
-          </div>
-          
-          {/* More Projects Button */}
-          <div className="more-projects">
-            <a href="https://github.com/axelfhagen" className="more-projects-button" target="_blank" rel="noopener noreferrer">
-              {t('projects.more')}
-            </a>
-          </div>
-        </section>
-
-        {/* Photography Section */}
-        <section id="photography" className="section">
-          <h2 className="section-title">{t('photography.title')}</h2>
-          <p className="section-subtitle">{t('photography.subtitle')}</p>
-          
-          {/* Preview Photo Grid - showing highlights only */}
-          <div className="photo-grid preview-grid">
-            {isLoadingPhotos ? (
-              // Loading placeholders
-              Array.from({ length: 6 }, (_, index) => (
-                <div key={`loading-${index}`} className="photo-item photo-loading">
-                  <div className="photo-thumbnail loading-placeholder">
-                    📷
-                  </div>
-                </div>
-              ))
-            ) : highlights.length > 0 ? (
-              // Actual photos
-              highlights.map((photo, index) => (
-                <div 
-                  key={photo.src || index} 
-                  className="photo-item" 
-                  onClick={() => openLightbox(photo)}
-                >
-                  <SmartImage 
-                    baseSrc={photo.src} 
-                    alt={photo.alt} 
-                    className="photo-thumbnail"
-                  />
-                </div>
-              ))
-            ) : (
-              // No photos found state
-              <div className="no-photos-message">
-                <p>No photos found in highlights folder</p>
-                <p>1. Add photos to: <code>/public/photos/highlights/</code></p>
-                <p>2. Run: <code>npm run scan-photos</code></p>
-                <p>3. Refresh page 📸</p>
-              </div>
-            )}
-          </div>
-          
-          {/* View Full Collection Button */}
-          <div className="plog-cta">
-            <Link to="/plog" className="plog-cta-button">
-              {t('plog.viewAll')}
-            </Link>
-          </div>
-        </section>
-
-        {/* Contact Section */}
-        <section id="contact" className="section contact-section">
-          <h2 className="section-title">{t('contact.title')}</h2>
-          <p className="contact-text">
-            {t('contact.description')}
-          </p>
-          <div className="contact-methods">
-            <a href="mailto:axel.hagen@hotmail.com" className="contact-button">
-              {t('contact.email')}
-            </a>
-            <a href={t('contact.resumeFile')} className="contact-button secondary" target="_blank" rel="noopener noreferrer">
-              {t('contact.resume')}
-            </a>
-          </div>
-        </section>
+    <>
+      <a href="#main" className="skip-link">
+        {t('nav.skip')}
+      </a>
+      <ScrollManager />
+      <Header />
+      <main id="main" tabIndex={-1}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/plog" element={<Plog />} />
+          <Route path="/plog/:tripId" element={<Trip />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </main>
-
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-content">
-          <div className="footer-info">
-            <p className="footer-built">
-              {t('footer.built')}<a href="https://github.com/axelfhagen/first-website" target="_blank" rel="noopener noreferrer" className="footer-link">{t('footer.viewSource')}</a>
-            </p>
-            <p className="footer-contact">
-              {t('footer.getInTouch')}<a href="mailto:axel.hagen@hotmail.com" className="footer-link">axel.hagen@hotmail.com</a>
-            </p>
-          </div>
-          <div className="footer-social">
-            <a href="https://github.com/axelfhagen" className="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <img src="/icons/social/github-logo.svg" alt="" className="footer-social-icon" />
-              <span>{t('social.github')}</span>
-            </a>
-            <a href="https://www.linkedin.com/in/axelhagen/" className="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <img src="/icons/social/linkedin-logo.svg" alt="" className="footer-social-icon" />
-              <span>{t('social.linkedin')}</span>
-            </a>
-          </div>
-        </div>
-      </footer>
-
-      {/* Lightbox Modal */}
-      {selectedPhoto && (
-        <div className="lightbox-overlay" onClick={closeLightbox}>
-          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <button className="lightbox-close" onClick={closeLightbox} aria-label="Close">×</button>
-            <SmartImage 
-              baseSrc={selectedPhoto.src} 
-              alt={selectedPhoto.alt} 
-              className="lightbox-image"
-            />
-          </div>
-        </div>
-      )}
-    </div>
+      <Footer />
+    </>
   );
 }
-
-export default App;

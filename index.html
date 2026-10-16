@@ -1,45 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/icons/frog/favicon.ico?v=3" />
-    <link rel="shortcut icon" href="/icons/frog/favicon.ico?v=3" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#c8d4c8" />
-    <meta
-      name="description"
-      content="Axel Friberg Hagen - Physics and math student from Norway passionate about AI and Statistics"
-    />
+    <title>Axel Friberg Hagen</title>
+    <meta name="description" content="Axel Friberg Hagen — physics and math student from Norway working with AI and statistics. Projects and a photo log from travels." />
     <meta name="author" content="Axel Friberg Hagen" />
-    <link rel="apple-touch-icon" href="/icons/frog/logo192.png?v=3" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/icons/frog/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/frog/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/icons/frog/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
-    <title>Axel Hagen - Portfolio</title>
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Axel Friberg Hagen - Portfolio" />
-    <meta
-      property="og:description"
-      content="Physics and math student from Norway passionate about AI, statistics, and photography."
-    />
-    <meta property="og:image" content="/icons/profile/76464829-8eee-4b77-88ab-c9b228e49093.jpg" />
-    <meta property="og:image:alt" content="Axel Friberg Hagen" />
-    <meta property="og:site_name" content="Axel Hagen" />
+    <meta property="og:site_name" content="Axel Friberg Hagen" />
+    <meta property="og:title" content="Axel Friberg Hagen" />
+    <meta property="og:description" content="Physics and math student from Norway working with AI and statistics. Projects and a photo log from travels." />
+    <meta property="og:image" content="/img/site/og.jpg" />
+    <meta property="og:image:alt" content="Portrait of Axel Friberg Hagen" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="nb_NO" />
+    <meta name="twitter:card" content="summary" />
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Axel Friberg Hagen - Portfolio" />
-    <meta
-      name="twitter:description"
-      content="Physics and math student from Norway passionate about AI, statistics, and photography."
-    />
-    <meta name="twitter:image" content="/icons/profile/76464829-8eee-4b77-88ab-c9b228e49093.jpg" />
+    <!-- Apply the saved/system theme and language before first paint (no flash). Keys must match src/theme and src/i18n. -->
+    <script>
+      (function () {
+        var d = document.documentElement;
+        try {
+          var t = localStorage.getItem('theme');
+          if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          d.dataset.theme = t;
+          var l = localStorage.getItem('lang');
+          if (l !== 'en' && l !== 'no') l = /^(nb|nn|no)\b/i.test(navigator.language) ? 'no' : 'en';
+          d.lang = l === 'no' ? 'nb' : 'en';
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>This site needs JavaScript to run.</noscript>
     <div id="root"></div>
-    <script type="module" src="/src/index.jsx"></script>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -1,0 +1,152 @@
+/* ---- Card ---- */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  text-decoration: none;
+}
+
+.media {
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+}
+
+.media :global(img) {
+  transition: transform 700ms var(--ease), opacity 500ms var(--ease);
+}
+
+.card:hover .media :global(img) {
+  transform: scale(1.03);
+}
+
+.textMedia {
+  aspect-ratio: 5 / 4;
+}
+
+.textCover {
+  display: flex;
+  align-items: flex-start;
+  height: 100%;
+  padding: var(--space-m);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.card:hover .textCover {
+  background: var(--paper);
+}
+
+.quote {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  line-height: 1.3;
+  color: var(--ink-soft);
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta {
+  margin-top: var(--space-2xs);
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+.title {
+  font-size: var(--step-2);
+  line-height: 1.05;
+}
+
+.card:hover .title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.12em;
+}
+
+@media (max-width: 40rem) {
+  .textMedia {
+    aspect-ratio: auto;
+  }
+}
+
+/* ---- Row ---- */
+.row {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr auto auto;
+  align-items: center;
+  gap: var(--space-m);
+  padding-block: var(--space-s);
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+}
+
+.rowThumb {
+  display: block;
+  width: 4.5rem;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+}
+
+.monogram {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  color: var(--muted);
+}
+
+.rowMain {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.rowTitle {
+  font-size: var(--step-2);
+  line-height: 1.1;
+}
+
+.rowMeta,
+.rowCount {
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+.rowCount {
+  font-variant-numeric: tabular-nums;
+}
+
+.arrow {
+  transition: transform var(--dur) var(--ease);
+}
+
+.row:hover .arrow {
+  transform: translateX(4px);
+}
+
+.row:hover .rowTitle {
+  color: var(--accent);
+}
+
+@media (max-width: 40rem) {
+  .row {
+    grid-template-columns: 3.5rem 1fr auto;
+    gap: var(--space-s);
+  }
+
+  .rowThumb {
+    width: 3.5rem;
+  }
+
+  .rowCount {
+    display: none;
+  }
+}

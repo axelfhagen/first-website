@@ -1,0 +1,48 @@
+.masonry {
+  list-style: none;
+  padding: 0;
+  columns: 3 18rem;
+  column-gap: var(--space-s);
+}
+
+.masonry .item {
+  break-inside: avoid;
+  margin-bottom: var(--space-s);
+}
+
+.strip {
+  list-style: none;
+  padding: 0 var(--gutter);
+  margin-inline: calc(-1 * var(--gutter));
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(70vw, 22rem);
+  gap: var(--space-s);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: thin;
+}
+
+.strip .item {
+  aspect-ratio: 3 / 4;
+  scroll-snap-align: start;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: zoom-in;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.button :global(img) {
+  transition: transform 600ms var(--ease), opacity 500ms var(--ease);
+}
+
+.button:hover :global(img) {
+  transform: scale(1.025);
+}

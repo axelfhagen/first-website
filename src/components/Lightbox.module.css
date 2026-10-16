@@ -1,0 +1,123 @@
+.dialog {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100svh;
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  border: 0;
+  background: var(--scrim);
+  color: #ebe9e3;
+  overflow: hidden;
+}
+
+.dialog::backdrop {
+  background: transparent;
+}
+
+.dialog[open] {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  animation: fade 220ms var(--ease);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-s) var(--gutter);
+  font-size: var(--step--1);
+  letter-spacing: 0.04em;
+}
+
+.position {
+  font-variant-numeric: tabular-nums;
+  color: #8f8c85;
+}
+
+.close {
+  padding: var(--space-xs) 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+.figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-s);
+  min-height: 0;
+  padding: 0 var(--gutter) var(--space-m);
+}
+
+.image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100svh - 9rem);
+  object-fit: contain;
+  background-size: cover;
+  animation: fade 260ms var(--ease);
+}
+
+.caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  max-width: var(--measure);
+  text-align: center;
+  font-size: var(--step--1);
+}
+
+.captionText {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+}
+
+.meta {
+  color: #a9a69e;
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  color: #ebe9e3;
+  background: rgba(255, 255, 255, 0.06);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.nav:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.prev {
+  left: var(--space-s);
+}
+
+.next {
+  right: var(--space-s);
+}
+
+/* On touch screens swiping is the main way to navigate; keep the arrows out of the photo. */
+@media (hover: none) and (max-width: 40rem) {
+  .nav {
+    display: none;
+  }
+}

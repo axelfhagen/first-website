@@ -1,200 +1,63 @@
-// Photo manifest - Auto-generated from actual files
-// Run `npm run scan-photos` to regenerate this file
+import generated from './photos.generated.json';
 
-export const PHOTO_MANIFEST = {
-  recent: [
-    "IMG_3588.png",
-    "IMG_3701.png",
-    "IMG_3752.png",
-    "IMG_3760.png",
-    "IMG_3762.png",
-    "IMG_4096.png",
-    "IMG_9406.png",
-    "IMG_9643.png",
-    "highlight_3.png",
-    "highlight_4.png",
-  ],
-  
-  highlights: [
-    "IMG_1757.png",
-    "IMG_1827.png",
-    "IMG_20250711_124440317_Original.png",
-    "IMG_2386.png",
-    "IMG_2481.png",
-    "IMG_2555.png",
-    "IMG_3239.png",
-    "IMG_3292.png",
-    "IMG_3581.png",
-    "IMG_3588.png",
-    "IMG_3703.png",
-    "IMG_3855.png",
-    "IMG_3987.png",
-    "IMG_4143.png",
-    "highlight_3.png",
-    "highlight_4.png",
-  ],
-  
-  trips: {
-    "beijing-2025": {
-      title: "Beijing Solo",
-      date: "August 2025",
-      folder: "beijing-2025",
-      images: [
-    "IMG_2493.png",
-    "city_1.jpg",
-      ]
-    },
-    "hanoi-2025": {
-      title: "Tokyo Summer Adventure",
-      date: "August 2023",
-      folder: "hanoi-2025",
-      images: [
-    "travel_2.jpg",
-      ]
-    },
-    "jeju-islands-2025": {
-      title: "Tokyo Summer Adventure",
-      date: "August 2023",
-      folder: "jeju-islands-2025",
-      images: [
-    "travel_2.jpg",
-      ]
-    },
-    "kyoto-osaka-nara-2025": {
-      title: "Tokyo Summer Adventure",
-      date: "August 2023",
-      folder: "kyoto-osaka-nara-2025",
-      images: [
-    "travel_2.jpg",
-      ]
-    },
-    "mt-fuji-2025": {
-      title: "Trip to Mt. Fuji",
-      date: "September 8th 2025",
-      folder: "mt-fuji-2025",
-      images: [
-    "travel_1.jpg",
-      ]
-    },
-    "tokyo-2025": {
-      title: "Tokyo Summer Adventure",
-      date: "August 2023",
-      folder: "tokyo-2025",
-      images: [
-    "travel_2.jpg",
-      ]
-    },
-    "yakushima-2025": {
-      title: "Yakushima Hiking week",
-      date: "17th - 23rd November 2025",
-      folder: "yakushima-2025",
-      images: [
-    "travel_2.jpg",
-      ]
-    },
-    "yufu-beppu-2025": {
-      title: "Mt Yufu Hike and Beppu Onsen",
-      date: "October 2025",
-      folder: "yufu-beppu-2025",
-      images: [
-    "travel_2.jpg",
-      ]
-    }
-  }
-};
+/**
+ * Read-only queries over the manifest produced by `npm run photos`.
+ * `createPhotoStore` is exported so tests can run the same queries on fixture data.
+ */
+export function createPhotoStore({ trips, photos }) {
+  const visibleTrips = trips.filter((t) => !t.draft);
+  const visiblePhotos = photos.filter((p) => !p.draft);
+  const photoById = new Map(visiblePhotos.map((p) => [p.id, p]));
+  const byDateDesc = (a, b) => (b.date ?? '').localeCompare(a.date ?? '');
 
-// Helper function to get preview photos (first N from recent)
-export const getPreviewPhotos = (count = 6) => {
-  return PHOTO_MANIFEST.recent
-    .slice(0, count)
-    .map((filename, index) => ({
-      src: `/photos/recent/${filename}`,
-      alt: `Photo ${index + 1}`,
-      filename: filename,
-      category: 'recent'
-    }));
-};
+  return {
+    trips: () => visibleTrips,
+    trip: (id) => visibleTrips.find((t) => t.id === id) ?? null,
+    tripPhotos: (trip) => trip.photoIds.map((id) => photoById.get(id)).filter(Boolean),
+    cover: (trip) => (trip.cover ? photoById.get(trip.cover) ?? null : null),
+    featured: () => visiblePhotos.filter((p) => p.featured),
+    recent: (n = 12) => [...visiblePhotos].sort(byDateDesc).slice(0, n),
+    /** Trips before/after `id` in the (newest-first) list. */
+    neighbours: (id) => {
+      const i = visibleTrips.findIndex((t) => t.id === id);
+      return { newer: visibleTrips[i - 1] ?? null, older: visibleTrips[i + 1] ?? null };
+    },
+  };
+}
 
-// Helper function to load metadata
-let cachedMetadata = null;
-export const loadRecentMetadata = async () => {
-  if (cachedMetadata) return cachedMetadata;
+export const photoStore = createPhotoStore(generated);
 
+/** Trip title in the current language. */
+export function tripTitle(trip, lang) {
+  return (lang === 'no' && trip.title_no) || trip.title;
+}
+
+/**
+ * Human date range for a trip. Accepts "2025", "2025-10" or "2025-10-03" for
+ * start/end, and avoids repeating the month/year when they're shared.
+ */
+export function formatTripDates(start, end, locale) {
+  if (!start) return '';
+  const parts = (s) => s.split('-').map(Number);
+  const [y1, m1, d1] = parts(start);
+  const fmt = (opts, y, m = 1, d = 1) => new Intl.DateTimeFormat(locale, { ...opts, timeZone: 'UTC' }).format(Date.UTC(y, m - 1, d));
+
+  if (!m1) return String(y1);
+  if (!d1) return fmt({ month: 'long', year: 'numeric' }, y1, m1);
+  if (!end || end === start) return fmt({ day: 'numeric', month: 'long', year: 'numeric' }, y1, m1, d1);
+
+  const [y2, m2, d2] = parts(end);
+  if (!d2) return fmt({ day: 'numeric', month: 'long', year: 'numeric' }, y1, m1, d1);
   try {
-    const response = await fetch('/photos/recent-metadata.json');
-    if (response.ok) {
-      cachedMetadata = await response.json();
-      return cachedMetadata;
-    }
-  } catch (error) {
-    console.warn('Could not load recent metadata:', error);
+    const f = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+    return f.formatRange(Date.UTC(y1, m1 - 1, d1), Date.UTC(y2, m2 - 1, d2));
+  } catch {
+    return `${fmt({ day: 'numeric', month: 'long', year: 'numeric' }, y1, m1, d1)} – ${fmt({ day: 'numeric', month: 'long', year: 'numeric' }, y2, m2, d2)}`;
   }
-  return {};
-};
+}
 
-// Helper function to get recent photos
-export const getRecentPhotos = () => {
-  return PHOTO_MANIFEST.recent.map((filename, index) => ({
-    src: `/photos/recent/${filename}`,
-    alt: `Photo ${index + 1}`,
-    filename: filename,
-    category: 'recent'
-  }));
-};
+export function tripYear(trip) {
+  return trip.start ? trip.start.slice(0, 4) : '—';
+}
 
-// Helper function to get recent photos with trip info
-export const getRecentPhotosWithMetadata = async () => {
-  const metadata = await loadRecentMetadata();
-
-  return PHOTO_MANIFEST.recent.map((filename, index) => {
-    const meta = metadata[filename] || {};
-    return {
-      src: `/photos/recent/${filename}`,
-      alt: `Photo ${index + 1}`,
-      filename: filename,
-      category: 'recent',
-      tripId: meta.tripId,
-      tripTitle: meta.tripTitle,
-      tripDate: meta.tripDate,
-      capturedDate: meta.capturedDate
-    };
-  });
-};
-
-// Helper function to get highlight photos
-export const getHighlightPhotos = () => {
-  return PHOTO_MANIFEST.highlights.map((filename, index) => ({
-    src: `/photos/highlights/${filename}`,
-    alt: `Highlight photo ${index + 1}`,
-    filename: filename,
-    category: 'highlights'
-  }));
-};
-
-// Helper function to get trip photos
-export const getTripPhotos = (tripId) => {
-  const trip = PHOTO_MANIFEST.trips[tripId];
-  if (!trip) return [];
-  
-  return trip.images.map((filename, index) => ({
-    src: `/photos/trips/${tripId}/${filename}`,
-    alt: `${trip.title} photo ${index + 1}`,
-    filename: filename,
-    category: tripId,
-    tripTitle: trip.title,
-    tripDate: trip.date
-  }));
-};
-
-// Helper function to get trip metadata
-export const getTripMetadata = (tripId) => {
-  return PHOTO_MANIFEST.trips[tripId] || null;
-};
-
-// Helper function to get all trips
-export const getAllTrips = () => {
-  return Object.entries(PHOTO_MANIFEST.trips).map(([id, trip]) => ({
-    id,
-    ...trip
-  }));
-};
+export const portrait = generated.portrait ?? null;

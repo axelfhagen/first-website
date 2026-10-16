@@ -1,25 +1,13 @@
 {
-  "short_name": "🐸 Axel Hagen",
-  "name": "Axel Hagen - Portfolio (Frog Mode)",
+  "short_name": "Axel Hagen",
+  "name": "Axel Friberg Hagen",
   "icons": [
-    {
-      "src": "icons/frog/favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "icons/frog/logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "icons/frog/logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
+    { "src": "icons/frog/favicon.ico", "sizes": "64x64 32x32 24x24 16x16", "type": "image/x-icon" },
+    { "src": "icons/frog/logo192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "icons/frog/logo512.png", "type": "image/png", "sizes": "512x512" }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#4ade80",
-  "background_color": "#dcfce7"
+  "theme_color": "#f6f5f1",
+  "background_color": "#f6f5f1"
 }
