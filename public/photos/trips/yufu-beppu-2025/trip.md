@@ -1,13 +1,4 @@
 # Mt Yufu Hike and Beppu Onsen
 *October 2025*
 
-A vibrant exploration of Tokyo during the height of summer. From bustling markets to serene temples, the city offered an incredible blend of modern innovation and ancient tradition.
-
-## Highlights
-- Golden hour in Shibuya crossing
-- Traditional tea ceremony in Asakusa
-- Modern architecture in Ginza
-- Festival fireworks over Tokyo Bay
-- Street food adventures in Harajuku
-
-The energy of Tokyo is unmatched. Each district has its own personality - from the tech-forward vibe of Akihabara to the peaceful gardens of the Imperial Palace. The summer festivals brought the city to life with incredible displays of color and culture.
+My first solo-hike in Japan. I found Mt. Yufu on google maps, and thought it seemed like a cool mountain from the satelite pictures. The plan was to stay in Yufuin the whole weekend but the accomodation was sold out. I decided on the day I would go to Beppu and see what would happend. Luckily there was a capsule hotel with a free room(?). The hike was overcast but I was practically alone for most of it, and the terrain and technicality level really fit my style. The post-hike onsen in Beppu was magical. 

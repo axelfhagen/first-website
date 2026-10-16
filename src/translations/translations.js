@@ -54,10 +54,7 @@ export const translations = {
       title: '"Plog"',
       subtitle: 'My Photo-Blog meant to document moments without social media',
       nav: {
-        highlights: '✨ Highlights',
-        travel: '✈️ Travel',
-        nature: '🌿 Nature',
-        city: '🏙️ City'
+        highlights: '✨ Highlights'
       }
     },
     
@@ -140,10 +137,7 @@ export const translations = {
       title: '"Plog"',
       subtitle: 'En Photo-blog ment for å dokumentere og dele eventyr uten sosiale medier',
       nav: {
-        highlights: '✨ Høydepunkter',
-        travel: '✈️ Reise',
-        nature: '🌿 Natur',
-        city: '🏙️ By'
+        highlights: '✨ Høydepunkter'
       }
     },
     

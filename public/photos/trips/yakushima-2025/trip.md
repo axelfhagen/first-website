@@ -1,13 +1,11 @@
 # Yakushima Hiking week
 *17th - 23rd November 2025*
 
-A vibrant exploration of Tokyo during the height of summer. From bustling markets to serene temples, the city offered an incredible blend of modern innovation and ancient tradition.
+6 days of hiking, onsen and monkeys. What more could you dream for? 
 
-## Highlights
-- Golden hour in Shibuya crossing
-- Traditional tea ceremony in Asakusa
-- Modern architecture in Ginza
-- Festival fireworks over Tokyo Bay
-- Street food adventures in Harajuku
 
-The energy of Tokyo is unmatched. Each district has its own personality - from the tech-forward vibe of Akihabara to the peaceful gardens of the Imperial Palace. The summer festivals brought the city to life with incredible displays of color and culture.
+We landed in Yakushima after an hour of the 70-year-old woman next to me talking to me the whole trip in Japanese as if I was fluent because I tried some basic smalltalk upon sitting down. Immediately the freshest air I have ever smelt hit us upon exiting the 12-row airplane. I was going with Leo, a fellow exchange student at Kyushu University. Our first encounter was at the university's welcome-party, where I greeted him, asked him where he was from, and after hearing "Germany", promptly asked if he liked hiking.
+
+
+
+

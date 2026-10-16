@@ -41,7 +41,7 @@ function App() {
     if (savedMode !== null) {
       setDarkMode(savedMode === 'true');
     } else {
-      setDarkMode(false); // Default to light mode
+      setDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
     }
   }, []);
 
@@ -62,6 +62,26 @@ function App() {
   const closeLightbox = () => {
     setSelectedPhoto(null);
   };
+
+  useEffect(() => {
+    if (!selectedPhoto) return;
+
+    const handleKey = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedPhoto(null);
+      } else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        const idx = highlights.findIndex((p) => p.src === selectedPhoto.src);
+        if (idx === -1 || highlights.length === 0) return;
+        const next = e.key === 'ArrowRight'
+          ? (idx + 1) % highlights.length
+          : (idx - 1 + highlights.length) % highlights.length;
+        setSelectedPhoto(highlights[next]);
+      }
+    };
+
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [selectedPhoto, highlights]);
 
   return (
     <div className={`App ${darkMode ? 'dark' : ''}`}>
@@ -254,7 +274,7 @@ function App() {
       {selectedPhoto && (
         <div className="lightbox-overlay" onClick={closeLightbox}>
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <button className="lightbox-close" onClick={closeLightbox}>×</button>
+            <button className="lightbox-close" onClick={closeLightbox} aria-label="Close">×</button>
             <SmartImage 
               baseSrc={selectedPhoto.src} 
               alt={selectedPhoto.alt} 

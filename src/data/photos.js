@@ -45,11 +45,11 @@ export const PHOTO_MANIFEST = {
       ]
     },
     "hanoi-2025": {
-      title: "hanoi 2025",
-      date: "",
+      title: "Tokyo Summer Adventure",
+      date: "August 2023",
       folder: "hanoi-2025",
       images: [
-    // No photos found - add some images to this folder!
+    "travel_2.jpg",
       ]
     },
     "jeju-islands-2025": {
@@ -115,6 +115,23 @@ export const getPreviewPhotos = (count = 6) => {
     }));
 };
 
+// Helper function to load metadata
+let cachedMetadata = null;
+export const loadRecentMetadata = async () => {
+  if (cachedMetadata) return cachedMetadata;
+
+  try {
+    const response = await fetch('/photos/recent-metadata.json');
+    if (response.ok) {
+      cachedMetadata = await response.json();
+      return cachedMetadata;
+    }
+  } catch (error) {
+    console.warn('Could not load recent metadata:', error);
+  }
+  return {};
+};
+
 // Helper function to get recent photos
 export const getRecentPhotos = () => {
   return PHOTO_MANIFEST.recent.map((filename, index) => ({
@@ -123,6 +140,25 @@ export const getRecentPhotos = () => {
     filename: filename,
     category: 'recent'
   }));
+};
+
+// Helper function to get recent photos with trip info
+export const getRecentPhotosWithMetadata = async () => {
+  const metadata = await loadRecentMetadata();
+
+  return PHOTO_MANIFEST.recent.map((filename, index) => {
+    const meta = metadata[filename] || {};
+    return {
+      src: `/photos/recent/${filename}`,
+      alt: `Photo ${index + 1}`,
+      filename: filename,
+      category: 'recent',
+      tripId: meta.tripId,
+      tripTitle: meta.tripTitle,
+      tripDate: meta.tripDate,
+      capturedDate: meta.capturedDate
+    };
+  });
 };
 
 // Helper function to get highlight photos

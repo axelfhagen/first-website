@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
-import { getRecentPhotos, getHighlightPhotos, getTripPhotos, getAllTrips } from '../data/photos';
+import { getRecentPhotos, getRecentPhotosWithMetadata, getHighlightPhotos, getTripPhotos, getAllTrips } from '../data/photos';
 import SmartImage from '../components/SmartImage';
 import { marked } from 'marked';
 import '../styles/Plog.css';
@@ -21,27 +21,31 @@ function Plog() {
 
   // Load all photos from manifest
   useEffect(() => {
-    try {
-      setIsLoading(true);
-      
-      // Get recent photos
-      const recentData = getRecentPhotos();
-      setRecentPhotos(recentData);
-      
-      // Get highlight photos
-      const highlightData = getHighlightPhotos();
-      setHighlightPhotos(highlightData);
-      
-      // Get all trips
-      const tripsData = getAllTrips();
-      setTrips(tripsData);
-      
-    } catch (error) {
-      console.warn('Could not load photos:', error);
-      // Keep empty arrays as fallback
-    } finally {
-      setIsLoading(false);
-    }
+    const loadPhotos = async () => {
+      try {
+        setIsLoading(true);
+
+        // Get recent photos with metadata
+        const recentData = await getRecentPhotosWithMetadata();
+        setRecentPhotos(recentData);
+
+        // Get highlight photos
+        const highlightData = getHighlightPhotos();
+        setHighlightPhotos(highlightData);
+
+        // Get all trips
+        const tripsData = getAllTrips();
+        setTrips(tripsData);
+
+      } catch (error) {
+        console.warn('Could not load photos:', error);
+        // Keep empty arrays as fallback
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadPhotos();
   }, []);
 
   // Load trip photos and content when a trip is selected
@@ -81,6 +85,35 @@ function Plog() {
   const closeLightbox = () => {
     setSelectedPhoto(null);
   };
+
+  const getActivePhotos = () => {
+    if (selectedSection === 'recent') return recentPhotos;
+    if (selectedSection === 'highlights') return highlightPhotos;
+    return currentTripPhotos;
+  };
+
+  useEffect(() => {
+    if (!selectedPhoto) return;
+
+    const handleKey = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedPhoto(null);
+        return;
+      }
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+
+      const photos = getActivePhotos();
+      const idx = photos.findIndex((p) => p.src === selectedPhoto.src);
+      if (idx === -1 || photos.length === 0) return;
+      const next = e.key === 'ArrowRight'
+        ? (idx + 1) % photos.length
+        : (idx - 1 + photos.length) % photos.length;
+      setSelectedPhoto(photos[next]);
+    };
+
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [selectedPhoto, selectedSection, recentPhotos, highlightPhotos, currentTripPhotos]);
 
   useEffect(() => {
     // Get dark mode state from localStorage and apply it
@@ -289,14 +322,42 @@ function Plog() {
       {selectedPhoto && (
         <div className="plog-lightbox-overlay" onClick={closeLightbox}>
           <div className="plog-lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <button className="plog-lightbox-close" onClick={closeLightbox}>×</button>
-            <SmartImage 
-              baseSrc={selectedPhoto.src} 
-              alt={selectedPhoto.alt} 
+            <button className="plog-lightbox-close" onClick={closeLightbox} aria-label="Close">×</button>
+            <SmartImage
+              baseSrc={selectedPhoto.src}
+              alt={selectedPhoto.alt}
               className="plog-lightbox-image"
             />
             <div className="plog-lightbox-info">
-              <p className="plog-lightbox-category">{selectedPhoto.category}</p>
+              {selectedPhoto.tripTitle && selectedPhoto.category === 'recent' ? (
+                <div className="plog-lightbox-trip-info">
+                  <p className="plog-lightbox-trip-title">📍 {selectedPhoto.tripTitle}</p>
+                  {selectedPhoto.tripDate && (
+                    <p className="plog-lightbox-trip-date">{selectedPhoto.tripDate}</p>
+                  )}
+                  {selectedPhoto.tripId && (
+                    <Link
+                      to={`/plog#${selectedPhoto.tripId}`}
+                      className="plog-lightbox-trip-link"
+                      onClick={() => {
+                        closeLightbox();
+                        setSelectedSection(selectedPhoto.tripId);
+                      }}
+                    >
+                      View full trip →
+                    </Link>
+                  )}
+                </div>
+              ) : selectedPhoto.tripTitle ? (
+                <div className="plog-lightbox-trip-info">
+                  <p className="plog-lightbox-trip-title">📍 {selectedPhoto.tripTitle}</p>
+                  {selectedPhoto.tripDate && (
+                    <p className="plog-lightbox-trip-date">{selectedPhoto.tripDate}</p>
+                  )}
+                </div>
+              ) : (
+                <p className="plog-lightbox-category">{selectedPhoto.category}</p>
+              )}
             </div>
           </div>
         </div>

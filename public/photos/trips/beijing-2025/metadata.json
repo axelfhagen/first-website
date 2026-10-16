@@ -1,0 +1,27 @@
+{
+  "trip": {
+    "name": "Beijing Solo",
+    "location": "Beijing, China",
+    "startDate": "2025-08-12",
+    "endDate": "2025-08-17",
+    "description": "My first solo trip in Asia. A 5-day adventure before my exchange in Japan, featuring the Great Wall and Beijing's vibrant nightlife."
+  },
+  "photos": [
+    {
+      "filename": "IMG_2493.png",
+      "title": "Great Wall of China",
+      "description": "Standing on the Great Wall - a dream come true",
+      "date": "2025-08-13T14:30:00",
+      "location": "Great Wall of China, Beijing",
+      "tags": ["landmark", "travel", "unesco"]
+    },
+    {
+      "filename": "city_1.jpg",
+      "title": "Summer Palace",
+      "description": "The beautiful Summer Palace - definitely not overrated",
+      "date": "2025-08-14T10:15:00",
+      "location": "Summer Palace, Beijing",
+      "tags": ["palace", "architecture", "unesco"]
+    }
+  ]
+}
