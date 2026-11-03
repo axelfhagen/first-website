@@ -1,0 +1,62 @@
+.figure {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 5.5rem;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.muted {
+  fill: var(--muted);
+}
+
+.mutedFill {
+  fill: var(--muted);
+  opacity: 0.55;
+}
+
+.accentFill {
+  fill: var(--accent);
+}
+
+.stroke {
+  stroke: var(--muted);
+  stroke-width: 1.5;
+}
+
+.accentStroke {
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.dashed {
+  stroke: var(--muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 4;
+}
+
+.rule {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.ring {
+  stroke: var(--accent);
+  stroke-width: 2;
+  fill: var(--bg);
+}
+
+.land {
+  fill: var(--line);
+}
+
+.blob1 {
+  fill: var(--accent-soft);
+}
+
+.blob2 {
+  fill: var(--accent);
+  opacity: 0.35;
+}

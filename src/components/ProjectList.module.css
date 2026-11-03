@@ -1,11 +1,105 @@
-.list {
+.grid {
   list-style: none;
   padding: 0;
-  max-width: var(--narrow);
   display: grid;
-  gap: 1.1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.35rem 1.1rem;
+  /* Slightly see-through so the lava background still shows. */
+  background: color-mix(in srgb, var(--tint) 75%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  transition: border-color var(--dur);
+}
+
+.card:hover,
+.card:focus-within {
+  border-color: var(--accent);
+}
+
+/* Dot-grid strip, like a page from a notebook. */
+.sketch {
+  margin: -1.25rem -1.35rem 1rem;
+  padding: 0.5rem 1.35rem;
+  border-bottom: 1px solid var(--line);
+  border-radius: 6px 6px 0 0;
+  background-image: radial-gradient(var(--line) 1px, transparent 1.2px);
+  background-size: 12px 12px;
+  background-position: 6px 6px;
 }
 
 .title {
-  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: var(--text-m);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.title a:focus-visible {
+  outline: none;
+}
+
+.card:has(a:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.arrow {
+  color: var(--muted);
+  transition: color var(--dur);
+}
+
+.card:hover .arrow {
+  color: var(--accent);
+}
+
+.description {
+  color: var(--muted);
+}
+
+.stat {
+  margin-top: 0.9rem;
+}
+
+.value {
+  font-family: var(--serif);
+  font-size: var(--text-l);
+  font-weight: 600;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--accent);
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+@media (max-width: 40rem) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }

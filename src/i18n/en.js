@@ -12,7 +12,7 @@ export default {
   },
   intro: {
     hello: 'Hey, I’m Axel!',
-    body: 'Physics and math student from Norway, into AI and statistics. In autumn 2025 I was on exchange at Kyushu University in Japan.',
+    body: 'I study physics and math in Norway. What I like most is the point where a pile of data turns into a prediction you can check, and finding out how wrong you were. So far that’s meant guessing where cargo ships will be next week, and whether a plant is sick from a photo the size of a stamp.',
     plog: 'I also like to travel and take photos. Instead of posting them on social media I keep them here, in my plog (photo log).',
     portraitAlt: 'Axel by the sea',
   },

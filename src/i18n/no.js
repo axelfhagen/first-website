@@ -12,7 +12,7 @@ export default {
   },
   intro: {
     hello: 'Hei, Axel her!',
-    body: 'Fysikk- og matematikkstudent fra Norge, med interesse for AI og statistikk. Høsten 2025 var jeg på utveksling ved Kyushu University i Japan.',
+    body: 'Jeg studerer fysikk og matematikk i Norge. Det jeg liker best er øyeblikket der en haug med data blir til en prediksjon du kan sjekke, og så finne ut hvor feil du tok. Så langt har det betydd å gjette hvor lasteskip er neste uke, og om en plante er syk ut fra et bilde på størrelse med et frimerke.',
     plog: 'Jeg liker også å reise og ta bilder. I stedet for å legge dem ut på sosiale medier samler jeg dem her, i plogen min (fotologg).',
     portraitAlt: 'Axel ved sjøen',
   },
