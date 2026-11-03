@@ -31,7 +31,7 @@
 }
 
 .rows {
-  --row: 9.5rem;
+  --row: 11.5rem;
   list-style: none;
   padding: 0;
   display: flex;
@@ -48,7 +48,7 @@
 
 @media (max-width: 40rem) {
   .rows {
-    --row: 6.5rem;
+    --row: 8rem;
   }
 }
 

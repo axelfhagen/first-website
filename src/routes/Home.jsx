@@ -63,7 +63,7 @@ export default function Home() {
         <h2 id="plog-title" className="section-title">
           <Link to="/plog">{t('plog.title')}</Link>
         </h2>
-        <PhotoGrid photos={photoStore.recent(7)} layout="rows" showTripLinks label={t('plog.recent')} />
+        <PhotoGrid photos={photoStore.recent(15)} layout="rows" showTripLinks label={t('plog.recent')} />
         <div className={styles.trips}>
           <TripList trips={photoStore.trips().slice(0, 5)} />
         </div>
