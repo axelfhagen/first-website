@@ -101,7 +101,6 @@ export default function Lightbox({ photos, index, onIndexChange, onClose, showTr
             </span>
             <button type="button" className={styles.close} onClick={onClose}>
               {t('lightbox.close')}
-              <span aria-hidden="true"> ✕</span>
             </button>
           </div>
 
@@ -124,7 +123,7 @@ export default function Lightbox({ photos, index, onIndexChange, onClose, showTr
                 {showTripLink && trip && (
                   <>
                     {' · '}
-                    <Link to={`/plog/${trip.id}`} className="link" onClick={onClose}>
+                    <Link to={`/plog/${trip.id}`} onClick={onClose}>
                       {t('lightbox.viewTrip')}: {tripTitle(trip, lang)}
                     </Link>
                   </>

@@ -1,109 +1,64 @@
 .header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
-  -webkit-backdrop-filter: saturate(1.4) blur(12px);
-  backdrop-filter: saturate(1.4) blur(12px);
-  border-bottom: 1px solid transparent;
-  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease);
-}
-
-.scrolled {
-  border-bottom-color: var(--rule);
-}
-
-.inner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-l);
-  height: 3.75rem;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 1.75rem;
 }
 
 .name {
-  font-size: var(--step--1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--serif);
+  font-size: 1.25rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   text-decoration: none;
-  white-space: nowrap;
+}
+
+.name:hover {
+  color: inherit;
 }
 
 .nav {
   display: flex;
-  gap: var(--space-m);
-  margin-left: auto;
+  align-items: center;
+  gap: 1.25rem;
 }
 
-.navLink {
-  position: relative;
-  font-size: var(--step--1);
+.nav a {
   text-decoration: none;
   color: var(--muted);
-  transition: color var(--dur) var(--ease);
 }
 
-.navLink:hover,
-.active {
-  color: var(--ink);
+.nav a:hover,
+.nav a[aria-current='page'] {
+  color: var(--accent);
 }
 
-.active::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.35rem;
-  height: 1px;
-  background: currentColor;
+.nav button {
+  color: var(--muted);
+  font-size: var(--text-s);
+  letter-spacing: 0.04em;
 }
 
-.controls {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2xs);
-  padding-left: var(--space-m);
-  border-left: 1px solid var(--rule);
+.nav button:hover {
+  color: var(--text);
 }
 
-.control {
+/* Theme toggle: a small circle, half filled. */
+.theme {
   display: grid;
   place-items: center;
-  min-width: 2rem;
-  height: 2rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  border-radius: var(--radius);
-  transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease);
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
-.control:hover {
-  color: var(--ink);
-  background: var(--rule);
-}
-
-@media (max-width: 40rem) {
-  .inner {
-    gap: var(--space-s);
-  }
-
-  /* Initials only on small screens so the nav fits. */
-  .name {
-    font-size: 0;
-  }
-
-  .name::before {
-    content: 'AFH';
-    font-size: var(--step--1);
-  }
-
-  .nav {
-    gap: var(--space-s);
-  }
-
-  .controls {
-    padding-left: var(--space-xs);
-  }
+.theme span {
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  background: linear-gradient(90deg, currentColor 50%, transparent 50%);
 }

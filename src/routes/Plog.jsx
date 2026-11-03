@@ -1,73 +1,46 @@
 import { useI18n } from '../i18n/useI18n.js';
 import { usePageTitle } from '../usePageTitle.js';
-import { photoStore, tripYear } from '../data/photos.js';
+import { photoStore } from '../data/photos.js';
 import PhotoGrid from '../components/PhotoGrid.jsx';
-import TripCard from '../components/TripCard.jsx';
-import Reveal from '../components/Reveal.jsx';
+import TripList from '../components/TripList.jsx';
 import styles from './Plog.module.css';
-
-function groupByYear(trips) {
-  const groups = new Map();
-  for (const trip of trips) {
-    const year = tripYear(trip);
-    if (!groups.has(year)) groups.set(year, []);
-    groups.get(year).push(trip);
-  }
-  return [...groups];
-}
 
 export default function Plog() {
   const { t } = useI18n();
   usePageTitle(t('plog.title'));
 
-  const featured = photoStore.featured();
-  const years = groupByYear(photoStore.trips());
-  const recent = photoStore.recent(24);
+  const favourites = photoStore.featured();
+  const all = photoStore.recent(Infinity);
 
   return (
-    <div className="page">
+    <div className="wrap">
       <header className={styles.header}>
-        <h1 className={`display ${styles.title}`}>{t('plog.title')}</h1>
-        <p className={styles.lead}>{t('plog.lead')}</p>
+        <h1>{t('plog.title')}</h1>
+        <p className="muted">{t('plog.lead')}</p>
       </header>
 
-      {featured.length > 0 && (
-        <section className={styles.section} aria-labelledby="highlights">
-          <h2 id="highlights" className="eyebrow">
-            {t('plog.highlights')}
+      <section className={styles.section} aria-labelledby="trips">
+        <h2 id="trips" className="section-title">
+          {t('plog.trips')}
+        </h2>
+        <TripList trips={photoStore.trips()} />
+      </section>
+
+      {favourites.length > 0 && (
+        <section className={styles.section} aria-labelledby="favourites">
+          <h2 id="favourites" className="section-title">
+            {t('plog.favourites')}
           </h2>
-          <div className={styles.strip}>
-            <PhotoGrid photos={featured} layout="strip" showTripLinks label={t('plog.highlights')} priority={2} />
-          </div>
+          <PhotoGrid photos={favourites} layout="rows" showTripLinks label={t('plog.favourites')} priority={6} />
         </section>
       )}
 
-      <section className={styles.section} aria-labelledby="trips">
-        <h2 id="trips" className="eyebrow">
-          {t('plog.trips')}
-        </h2>
-        {years.map(([year, trips]) => (
-          <Reveal key={year} className={styles.year}>
-            <h3 className={`display ${styles.yearLabel}`}>{year}</h3>
-            <ul className={styles.tripList}>
-              {trips.map((trip) => (
-                <li key={trip.id}>
-                  <TripCard trip={trip} variant="row" />
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        ))}
-      </section>
-
-      {recent.length > 0 && (
-        <section className={styles.section} aria-labelledby="recent">
-          <h2 id="recent" className="eyebrow">
-            {t('plog.recent')}
+      {all.length > 0 && (
+        <section className={styles.section} aria-labelledby="all">
+          <h2 id="all" className="section-title">
+            {t('plog.all')} <span className="meta muted">({all.length})</span>
           </h2>
-          <div className={styles.grid}>
-            <PhotoGrid photos={recent} showTripLinks label={t('plog.recent')} />
-          </div>
+          <PhotoGrid photos={all} showTripLinks label={t('plog.all')} />
         </section>
       )}
     </div>

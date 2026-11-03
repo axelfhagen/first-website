@@ -19,7 +19,7 @@
 .dialog[open] {
   display: grid;
   grid-template-rows: auto 1fr;
-  animation: fade 220ms var(--ease);
+  animation: fade 220ms ease;
 }
 
 @keyframes fade {
@@ -32,9 +32,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-s) var(--gutter);
-  font-size: var(--step--1);
-  letter-spacing: 0.04em;
+  padding: 0.75rem var(--gutter);
+  font-size: var(--text-s);
 }
 
 .position {
@@ -43,10 +42,7 @@
 }
 
 .close {
-  padding: var(--space-xs) 0;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 500;
+  padding: 0.5rem 0;
 }
 
 .figure {
@@ -54,9 +50,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-s);
+  gap: 0.75rem;
   min-height: 0;
-  padding: 0 var(--gutter) var(--space-m);
+  padding: 0 var(--gutter) 1.25rem;
 }
 
 .image {
@@ -66,7 +62,7 @@
   max-height: calc(100svh - 9rem);
   object-fit: contain;
   background-size: cover;
-  animation: fade 260ms var(--ease);
+  animation: fade 260ms ease;
 }
 
 .caption {
@@ -76,12 +72,13 @@
   gap: 0.15rem;
   max-width: var(--measure);
   text-align: center;
-  font-size: var(--step--1);
+  font-size: var(--text-s);
 }
 
 .captionText {
-  font-family: var(--font-display);
-  font-size: var(--step-1);
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: var(--text-m);
 }
 
 .meta {
@@ -100,7 +97,7 @@
   font-size: 1.25rem;
   color: #ebe9e3;
   background: rgba(255, 255, 255, 0.06);
-  transition: background-color var(--dur) var(--ease);
+  transition: background-color var(--dur) ease;
 }
 
 .nav:hover {
@@ -108,11 +105,11 @@
 }
 
 .prev {
-  left: var(--space-s);
+  left: 0.75rem;
 }
 
 .next {
-  right: var(--space-s);
+  right: 0.75rem;
 }
 
 /* On touch screens swiping is the main way to navigate; keep the arrows out of the photo. */

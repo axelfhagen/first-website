@@ -6,17 +6,13 @@ export default function NotFound() {
   const { t } = useI18n();
   usePageTitle('404');
   return (
-    <div className="page" style={{ paddingBlock: 'var(--space-2xl)' }}>
-      <p className="eyebrow">404</p>
-      <h1 className="display" style={{ fontSize: 'var(--step-4)', marginBlock: 'var(--space-m)' }}>
-        {t('notFound.title')}
-      </h1>
-      <p className="muted" style={{ marginBottom: 'var(--space-l)' }}>
-        {t('notFound.body')}
+    <div className="wrap" style={{ paddingTop: '3rem' }}>
+      <p className="meta muted">404</p>
+      <h1 style={{ fontSize: 'var(--text-xl)', margin: '0.25rem 0 0.5rem' }}>{t('notFound.title')}</h1>
+      <p>{t('notFound.body')}</p>
+      <p style={{ marginTop: '1.5rem' }}>
+        <Link to="/">{t('notFound.home')}</Link>
       </p>
-      <Link to="/" className="arrow-link">
-        <span className="arrow">←</span> {t('notFound.home')}
-      </Link>
     </div>
   );
 }

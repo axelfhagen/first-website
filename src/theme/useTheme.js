@@ -20,7 +20,7 @@ export function useTheme() {
     document.documentElement.dataset.theme = theme;
     document
       .querySelectorAll('meta[name="theme-color"]')
-      .forEach((m) => m.setAttribute('content', theme === 'dark' ? '#111110' : '#f6f5f1'));
+      .forEach((m) => m.setAttribute('content', theme === 'dark' ? '#101010' : '#ffffff'));
   }, [theme]);
 
   useEffect(() => {

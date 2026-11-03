@@ -10,235 +10,19 @@
 
 html {
   /* Painting the root element keeps Safari's overscroll area the right color. */
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--bg);
+  color: var(--text);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 
 body {
-  min-height: 100svh;
-  font-family: var(--font-text);
-  font-size: var(--step-0);
-  line-height: 1.6;
-  font-feature-settings: 'ss01', 'cv11';
+  font-family: var(--sans);
+  font-size: var(--text-m);
+  line-height: 1.55;
+  font-variant-numeric: oldstyle-nums;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
-}
-
-img,
-picture,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
-button,
-input {
-  font: inherit;
-  color: inherit;
-}
-
-button {
-  cursor: pointer;
-  background: none;
-  border: 0;
-  padding: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-}
-
-h1,
-h2,
-h3 {
-  font-weight: 400;
-  line-height: 1.1;
-  text-wrap: balance;
-}
-
-p {
-  text-wrap: pretty;
-}
-
-::selection {
-  background: var(--accent);
-  color: var(--accent-ink);
-}
-
-:focus-visible {
-  outline: 2px solid var(--focus);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-/* ---------- Shared utilities ---------- */
-
-.page {
-  width: 100%;
-  max-width: calc(var(--page-max) + 2 * var(--gutter));
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-}
-
-.visually-hidden {
-  position: absolute !important;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-.skip-link {
-  position: absolute;
-  left: var(--gutter);
-  top: -100px;
-  z-index: 100;
-  padding: var(--space-xs) var(--space-s);
-  background: var(--ink);
-  color: var(--paper);
-  text-decoration: none;
-}
-
-.skip-link:focus {
-  top: var(--space-s);
-}
-
-/* Small-caps section label, e.g. "01 — Selected work" */
-.eyebrow {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-s);
-  font-size: var(--step--1);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.eyebrow .num {
-  font-variant-numeric: tabular-nums;
-  color: var(--ink);
-}
-
-.display {
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-}
-
-/* Link with an animated underline */
-.link {
-  text-decoration: none;
-  background-image: linear-gradient(currentColor, currentColor);
-  background-size: 100% 1px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  transition: background-size var(--dur) var(--ease), color var(--dur) var(--ease);
-}
-
-.link:hover {
-  background-size: 0% 1px;
-  background-position: 100% 100%;
-}
-
-.arrow-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4em;
-  font-size: var(--step--1);
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  text-decoration: none;
-  color: var(--ink);
-}
-
-.arrow-link .arrow {
-  transition: transform var(--dur) var(--ease);
-}
-
-.arrow-link:hover .arrow {
-  transform: translateX(4px);
-}
-
-.muted {
-  color: var(--muted);
-}
-
-/* Prose for trip stories (markdown → HTML) */
-.prose {
-  max-width: var(--measure);
-  color: var(--ink-soft);
-}
-
-.prose > * + * {
-  margin-top: 1.1em;
-}
-
-.prose h2,
-.prose h3 {
-  margin-top: 2em;
-  font-family: var(--font-display);
-  font-size: var(--step-2);
-  color: var(--ink);
-}
-
-.prose ul,
-.prose ol {
-  padding-left: 1.2em;
-}
-
-.prose li + li {
-  margin-top: 0.3em;
-}
-
-.prose li::marker {
-  color: var(--muted);
-}
-
-.prose a {
-  color: var(--ink);
-}
-
-.prose blockquote {
-  padding-left: var(--space-m);
-  border-left: 1px solid var(--rule);
-  font-family: var(--font-display);
-  font-size: var(--step-1);
-  color: var(--ink);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* <Reveal> */
-.reveal {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 700ms var(--ease), transform 700ms var(--ease);
-}
-
-.reveal.is-shown {
-  opacity: 1;
-  transform: none;
-}
-
-main:focus {
-  outline: none;
 }
 
 #root {
@@ -249,4 +33,141 @@ main:focus {
 
 #root > main {
   flex: 1;
+}
+
+main:focus {
+  outline: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.18em;
+  transition: background-color var(--dur), color var(--dur);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Shared ---------- */
+
+.wrap {
+  width: 100%;
+  max-width: calc(var(--wide) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.narrow {
+  max-width: var(--narrow);
+}
+
+/* Dates, counts, tech stacks. */
+.meta {
+  font-size: var(--text-s);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.section-title {
+  font-size: var(--text-l);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: -100px;
+  z-index: 100;
+  padding: 0.5rem 0.75rem;
+  background: var(--text);
+  color: var(--bg);
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+/* Trip stories (markdown → HTML) */
+.prose {
+  max-width: var(--narrow);
+}
+
+.prose > * + * {
+  margin-top: 1em;
+}
+
+.prose h2,
+.prose h3 {
+  margin-top: 1.75em;
+  font-size: var(--text-l);
+  font-weight: 500;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.25em;
+}
+
+.prose li + li {
+  margin-top: 0.25em;
+}
+
+.prose blockquote {
+  padding-left: 1rem;
+  border-left: 2px solid var(--accent);
+  font-family: var(--serif);
+  font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

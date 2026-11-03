@@ -3,6 +3,7 @@ import { Route, Routes, useLocation, useNavigationType } from 'react-router-dom'
 import { useI18n } from './i18n/useI18n.js';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
+import LavaBackground from './components/LavaBackground.jsx';
 import Home from './routes/Home.jsx';
 import Plog from './routes/Plog.jsx';
 import Trip from './routes/Trip.jsx';
@@ -35,6 +36,7 @@ export default function App() {
         {t('nav.skip')}
       </a>
       <ScrollManager />
+      <LavaBackground />
       <Header />
       <main id="main" tabIndex={-1}>
         <Routes>

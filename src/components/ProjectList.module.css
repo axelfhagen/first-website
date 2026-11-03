@@ -1,0 +1,11 @@
+.list {
+  list-style: none;
+  padding: 0;
+  max-width: var(--narrow);
+  display: grid;
+  gap: 1.1rem;
+}
+
+.title {
+  font-weight: 700;
+}

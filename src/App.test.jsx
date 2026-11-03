@@ -7,9 +7,9 @@ import { renderApp } from './test/render.jsx';
 vi.mock('./data/photos.generated.json', async () => ({ default: (await import('./test/fixture.js')).fixture }));
 
 describe('routing', () => {
-  it('renders the home page with work and latest trips', () => {
+  it('renders the home page with projects and latest trips', () => {
     renderApp('/');
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/physics and math student/i);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Hey, I’m Axel!');
     expect(screen.getByRole('link', { name: /AIS Forecaster/ })).toHaveAttribute('href', expect.stringContaining('github.com'));
     expect(screen.getByRole('link', { name: /New Trip/ })).toHaveAttribute('href', '/plog/new-trip');
     expect(screen.queryByText('Draft Trip')).not.toBeInTheDocument();
@@ -27,7 +27,7 @@ describe('routing', () => {
     renderApp('/plog/draft-trip');
     expect(screen.getByText('404')).toBeInTheDocument();
     renderApp('/nope');
-    expect(screen.getAllByText('Lost the trail.').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Page not found').length).toBeGreaterThan(0);
   });
 
   it('renders Norwegian copy and trip titles', () => {
@@ -46,12 +46,12 @@ describe('lightbox', () => {
     await user.click(first);
     const dialog = screen.getByRole('dialog', { name: 'Photo viewer' });
     expect(dialog).toHaveAttribute('open');
-    expect(within(dialog).getByText('1 of 2')).toBeInTheDocument();
+    expect(within(dialog).getByText('1 / 2')).toBeInTheDocument();
 
     await user.keyboard('{ArrowLeft}');
-    expect(within(dialog).getByText('2 of 2')).toBeInTheDocument();
+    expect(within(dialog).getByText('2 / 2')).toBeInTheDocument();
     await user.keyboard('{ArrowRight}');
-    expect(within(dialog).getByText('1 of 2')).toBeInTheDocument();
+    expect(within(dialog).getByText('1 / 2')).toBeInTheDocument();
 
     await user.click(within(dialog).getByRole('button', { name: /close/i }));
     expect(dialog).not.toHaveAttribute('open');

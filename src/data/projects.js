@@ -1,43 +1,43 @@
-/** Shown in "Selected work" on the home page, in this order. */
+/** Shown under "Projects" on the home page, in this order. */
 export const projects = [
   {
     id: 'ais',
-    title: { en: 'AIS Forecaster', no: 'AIS-prognoser' },
+    title: 'AIS Forecaster',
     description: {
-      en: 'Predicting the positions of cargo ships from AIS data.',
+      en: 'Predicting the position of cargo ships using AIS data.',
       no: 'Predikerer posisjonen til lasteskip ved hjelp av AIS-data.',
     },
-    tech: ['Python', 'scikit-learn', 'pandas'],
+    tech: 'Python, scikit-learn, pandas',
     url: 'https://github.com/axelfhagen/AIS-forecast',
   },
   {
     id: 'plant',
-    title: { en: 'Plant Health Classifier', no: 'Plantehelse-klassifisering' },
+    title: 'Plant Classifier',
     description: {
-      en: 'A CNN that tells healthy plants from sick ones.',
-      no: 'Et CNN som skiller friske planter fra syke.',
+      en: 'Classifying healthy and unhealthy plants with computer vision.',
+      no: 'Klassifiserer friske og syke planter med computer vision.',
     },
-    tech: ['Python', 'TensorFlow', 'Kaggle'],
+    tech: 'Python, TensorFlow, Kaggle',
     url: 'https://github.com/axelfhagen/CNN-plant-health-classifier',
   },
   {
     id: 'lstm',
-    title: { en: 'LSTM Time Series', no: 'LSTM-tidsserier' },
+    title: 'LSTM Timeseries',
     description: {
-      en: 'Forecasting future values with recurrent neural networks.',
-      no: 'Prognoser for fremtidige verdier med rekurrente nevrale nett.',
+      en: 'Predicting future values with deep learning.',
+      no: 'Predikerer fremtidige verdier med dyp læring.',
     },
-    tech: ['Python', 'TensorFlow', 'NumPy'],
+    tech: 'Python, TensorFlow, NumPy',
     url: 'https://github.com/axelfhagen/LSTM-timeseries-forecasting',
   },
   {
     id: 'website',
-    title: { en: 'This website', no: 'Denne nettsiden' },
+    title: 'This website',
     description: {
-      en: 'Portfolio and photo log, with a build-time image pipeline.',
-      no: 'Portefølje og fotologg, med bildebehandling ved bygging.',
+      en: 'Portfolio and plog. The photos are resized at build time so they load fast.',
+      no: 'Portefølje og plog. Bildene skaleres ned når siden bygges, så de laster raskt.',
     },
-    tech: ['React', 'Vite', 'sharp'],
+    tech: 'React, Vite, sharp',
     url: 'https://github.com/axelfhagen/first-website',
   },
 ];

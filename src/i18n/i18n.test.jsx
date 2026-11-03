@@ -40,16 +40,16 @@ describe('language choice', () => {
     let api;
     function Probe() {
       api = useI18n();
-      return <span>{api.t('nav.about')}</span>;
+      return <span>{api.t('nav.projects')}</span>;
     }
     render(
       <I18nProvider initialLang="en">
         <Probe />
       </I18nProvider>,
     );
-    expect(screen.getByText('About')).toBeInTheDocument();
+    expect(screen.getByText('Projects')).toBeInTheDocument();
     act(() => api.toggleLang());
-    expect(screen.getByText('Om meg')).toBeInTheDocument();
+    expect(screen.getByText('Prosjekter')).toBeInTheDocument();
     expect(localStorage.getItem('lang')).toBe('no');
     expect(document.documentElement.lang).toBe('nb');
   });

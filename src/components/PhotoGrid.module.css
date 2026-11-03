@@ -2,12 +2,12 @@
   list-style: none;
   padding: 0;
   columns: 3 18rem;
-  column-gap: var(--space-s);
+  column-gap: 5px;
 }
 
 .masonry .item {
   break-inside: avoid;
-  margin-bottom: var(--space-s);
+  margin-bottom: 5px;
 }
 
 .strip {
@@ -17,7 +17,7 @@
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: min(70vw, 22rem);
-  gap: var(--space-s);
+  gap: 6px;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
@@ -30,19 +30,38 @@
   scroll-snap-align: start;
 }
 
+.rows {
+  --row: 9.5rem;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.rows .item {
+  flex: var(--ar) 1 calc(var(--ar) * var(--row));
+  aspect-ratio: var(--ar);
+  /* Caps how far a short last row can stretch. */
+  max-width: calc(var(--ar) * var(--row) * 1.2);
+}
+
+@media (max-width: 40rem) {
+  .rows {
+    --row: 6.5rem;
+  }
+}
+
 .button {
   display: block;
   width: 100%;
   height: 100%;
   cursor: zoom-in;
   overflow: hidden;
-  border-radius: var(--radius);
+  border-radius: 0;
+  transition: opacity var(--dur);
 }
 
-.button :global(img) {
-  transition: transform 600ms var(--ease), opacity 500ms var(--ease);
-}
-
-.button:hover :global(img) {
-  transform: scale(1.025);
+.button:hover {
+  opacity: 0.85;
 }

@@ -1,52 +1,13 @@
 .header {
-  padding-block: var(--space-2xl) var(--space-xl);
-  border-bottom: 1px solid var(--ink);
+  padding-top: 3.5rem;
 }
 
-.title {
-  font-size: calc(var(--step-4) * 1.4);
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-}
-
-.lead {
-  margin-top: var(--space-m);
-  max-width: 32rem;
-  font-size: var(--step-1);
-  color: var(--muted);
+.header h1 {
+  font-size: var(--text-xl);
+  font-weight: 500;
+  margin-bottom: 0.35rem;
 }
 
 .section {
-  padding-top: var(--space-xl);
-}
-
-.strip,
-.grid {
-  margin-top: var(--space-m);
-}
-
-.year {
-  display: grid;
-  grid-template-columns: 8rem 1fr;
-  gap: var(--space-m);
-  margin-top: var(--space-m);
-}
-
-.yearLabel {
-  font-size: var(--step-2);
-  padding-top: var(--space-s);
-  color: var(--muted);
-}
-
-.tripList {
-  list-style: none;
-  padding: 0;
-  border-bottom: 1px solid var(--rule);
-}
-
-@media (max-width: 40rem) {
-  .year {
-    grid-template-columns: 1fr;
-    gap: var(--space-2xs);
-  }
+  padding-top: 3.5rem;
 }

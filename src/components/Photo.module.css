@@ -2,7 +2,7 @@
   position: relative;
   display: block;
   overflow: hidden;
-  background-color: var(--rule);
+  background-color: var(--tint);
   background-size: cover;
   background-position: center;
 }
@@ -21,7 +21,7 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 500ms var(--ease);
+  transition: opacity 500ms ease;
 }
 
 .loaded {
