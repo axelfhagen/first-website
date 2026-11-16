@@ -5,6 +5,16 @@
 [build.environment]
   NODE_VERSION = "22"
 
+# Basic security headers for every response. No CSP for now: nothing here
+# takes user input, and a strict policy is easy to get wrong.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
 # Generated images are content-hashed by name+width; cache them for a while.
 [[headers]]
   for = "/img/*"
