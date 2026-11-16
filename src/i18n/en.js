@@ -24,6 +24,17 @@ export default {
     title: 'Projects',
     more: 'More on GitHub',
   },
+  figures: {
+    now: 'now',
+    fiveDays: '+5 days',
+    pixels: '96×96',
+    healthy: 'healthy',
+    sick: 'sick',
+    next18: 'next 18',
+    model: 'LSTM',
+    baseline: 'baseline',
+    sizes: '3 sizes + blur',
+  },
   plog: {
     title: 'Plog',
     lead: 'Photos and short stories from trips.',

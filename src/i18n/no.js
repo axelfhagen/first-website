@@ -24,6 +24,17 @@ export default {
     title: 'Prosjekter',
     more: 'Mer på GitHub',
   },
+  figures: {
+    now: 'nå',
+    fiveDays: '+5 dager',
+    pixels: '96×96',
+    healthy: 'frisk',
+    sick: 'syk',
+    next18: 'neste 18',
+    model: 'LSTM',
+    baseline: 'baseline',
+    sizes: '3 størrelser + blur',
+  },
   plog: {
     title: 'Plog',
     lead: 'Bilder og korte historier fra turer.',
