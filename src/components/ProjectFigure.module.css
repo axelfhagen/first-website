@@ -2,19 +2,32 @@
   display: block;
   width: 100%;
   height: auto;
-  max-height: 5.5rem;
+  max-height: 6rem;
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.muted {
+/* Small notebook-style annotations. */
+.label,
+.labelAccent {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-variant-numeric: lining-nums tabular-nums;
   fill: var(--muted);
+  stroke: none;
+}
+
+.labelAccent {
+  fill: var(--accent);
 }
 
 .mutedFill {
   fill: var(--muted);
-  opacity: 0.55;
+}
+
+.textFill {
+  fill: var(--text);
 }
 
 .accentFill {
@@ -24,6 +37,12 @@
 .stroke {
   stroke: var(--muted);
   stroke-width: 1.5;
+}
+
+.thin {
+  stroke: var(--muted);
+  stroke-width: 1;
+  opacity: 0.6;
 }
 
 .accentStroke {
@@ -37,9 +56,20 @@
   stroke-dasharray: 3 4;
 }
 
+.dashedAccent {
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 4;
+}
+
 .rule {
   stroke: var(--line);
   stroke-width: 1;
+}
+
+.ghost {
+  stroke: var(--line);
+  stroke-width: 1.25;
 }
 
 .ring {
@@ -52,11 +82,58 @@
   fill: var(--line);
 }
 
+.cone {
+  fill: var(--accent);
+  opacity: 0.12;
+}
+
+/* Plant */
+.spot {
+  fill: var(--muted);
+  opacity: 0.7;
+}
+
+.rib {
+  fill: var(--accent);
+  opacity: 0.6;
+}
+
+.map {
+  fill: var(--bg);
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+
+/* Website */
+.frame {
+  fill: var(--bg);
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+
+.page {
+  fill: var(--bg);
+}
+
+.mountain {
+  fill: var(--accent-soft);
+}
+
+.sun {
+  fill: var(--accent);
+  opacity: 0.5;
+}
+
+.textLine {
+  fill: var(--muted);
+  opacity: 0.45;
+}
+
 .blob1 {
   fill: var(--accent-soft);
 }
 
 .blob2 {
   fill: var(--accent);
-  opacity: 0.35;
+  opacity: 0.4;
 }
